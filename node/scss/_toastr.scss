@@ -1,0 +1,103 @@
+/* -------------------------------------
+ * TOASTR
+ * -----------------------------------*/
+$background-toastr: #fff;
+$border-toastr: 1px solid oklch(.92 .004 286.32);
+
+div[data-compo-toastr] {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    padding: 24px;
+    padding-top: 96px;
+
+    opacity: 0;
+    transition: all .2s;
+
+    &[data-show] {
+        opacity: 1;
+        transform: translateX(0);
+        transition: all .35s;
+    }
+
+    #toastr {
+        max-width: 400px;
+        padding: 10px;
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+        background-color: $background-toastr;
+        border: $border-toastr;
+
+        &-container {
+            display: flex;
+            align-items: flex-start;
+            gap: $gap-4;
+
+            &-content {
+                display: flex;
+                flex: 1;
+                padding-inline-start: $gap-2-5;
+                padding-block: $gap-1-5;
+                gap: $gap-2;
+
+                &-heading {
+                    font-size: .875rem;
+                    line-height: calc(1.25 / .875);
+                    font-weight: 500;
+                    color: oklch(.274 .006 286.033);
+                    padding-bottom: $gap-2;
+                }
+
+                &-text {
+                    font-weight: 400;
+                    color: oklch(.552 .016 285.938);
+                }
+            }
+
+            &-close {
+                display: flex;
+                align-items: center;
+
+                > button {
+                    padding: 0;
+                    width: 32px;
+                    height: 32px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: .375rem;
+
+                    &:hover {
+                        background-color: color-mix(in oklab, oklch(.274 .006 286.033) 5%, transparent);
+                    }
+                }
+            }
+        }
+    }
+
+    &[data-position=top-left],
+    &[data-position=top-right] {
+        margin-bottom: auto;
+        transform: translateX(-10px);
+    }
+
+    &[data-position=bottom-left],
+    &[data-position=bottom-right] {
+        margin-top: auto;
+        transform: translateX(10px);
+    }
+
+    &[data-position=top-left],
+    &[data-position=bottom-left] {
+        margin-right: auto;
+    }
+
+    &[data-position=top-right],
+    &[data-position=bottom-right] {
+        margin-left: auto;
+    }
+}

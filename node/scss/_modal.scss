@@ -1,0 +1,59 @@
+/* -------------------------------------
+ * MODAL
+ * -----------------------------------*/
+$max-width: 95vw;
+$max-height: 95vh;
+
+$small-width: 400px;
+$medium-width: 800px;
+$large-width: 1200px;
+
+$backdrop: rgba(0, 0, 0, .15);
+$background-modal: #f5f5f5;
+$border-modal: 1px solid #f9f9f9;
+
+dialog {
+    all: revert;
+    height: auto;
+    max-height: $max-height;
+    background-color: $background-modal;
+    border: $border-modal;
+    width: max($medium-width, $max-width);
+
+    opacity: 0;
+    transition: all .2s;
+    transform: translate(0) scale(.95);
+
+    &[data-size=s] {
+        width: max($small-width, $max-width);
+    }
+    &[data-size=m] {
+        width: max($medium-width, $max-width);
+    }
+    &[data-size=l] {
+        width: max($large-width, $max-width);
+    }
+
+    &[data-open] {
+        opacity: 1;
+        transition: all .35s;
+        transform: translate(0) scale(1);
+
+        &::backdrop {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: $backdrop;
+        }
+    }
+
+    div[data-modal-close] {
+        position: absolute;
+        top: 0px;
+        inset-inline-end: 0px;
+        margin-top: $gap-4;
+        margin-inline-end: $gap-4;
+    }
+}
