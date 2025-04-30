@@ -2,6 +2,7 @@
 
 namespace OANNA;
 
+use Flux\Flux;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class AssetManager
         $instance = new static;
 
         $instance->registerAssetDirective();
+        $instance->registerAssetRoutes();
     }
 
     public function registerAssetDirective()
@@ -31,6 +33,15 @@ class AssetManager
         });
     }
 
+    public function registerAssetRoutes()
+    {
+        Route::get('/oanna/oanna.min.js', [static::class, 'oannaMinJs']);
+    }
+
+    public function oannaMinJs() {
+        return $this->pretendResponseIsFile(__DIR__.'/../../livewire-component/dist/oanna.min.js', 'text/javascript');
+    }
+
     public static function scripts($options = [])
     {
         return '<script src="/oanna/oanna.min.js"></script>';
@@ -38,7 +49,7 @@ class AssetManager
 
     public static function appearance($options = [])
     {
-        return '<<link rel="stylesheet" href="/oanna/oanna.css">';
+        //
     }
 
     public function pretendResponseIsFile($file, $contentType = 'application/javascript; charset=utf-8')
