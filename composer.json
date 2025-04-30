@@ -63,7 +63,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "CompoServiceProvider"
+                "OANNA\\Compo\\CompoServiceProvider"
             ],
             "aliases": {
                 "Compo": "OANNA\\Compo\\Facades\\Compo"
