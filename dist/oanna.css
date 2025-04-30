@@ -1,6 +1,17 @@
 /* -------------------------------------
  * MODAL
  * -----------------------------------*/
+body:has(dialog[data-open]):after {
+  content: "";
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
 dialog {
   display: block;
   height: fit-content;
@@ -10,6 +21,7 @@ dialog {
   width: min(600px, 95vw);
   border-radius: 0.75rem;
   margin: auto;
+  z-index: 1000;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -20,16 +32,16 @@ dialog {
   transform: translate(0) scale(0.98);
 }
 dialog[data-size=s] {
-  width: max(400px, 95vw);
+  width: min(400px, 95vw);
 }
 dialog[data-size=m] {
-  width: max(600px, 95vw);
+  width: min(600px, 95vw);
 }
 dialog[data-size=l] {
-  width: max(800px, 95vw);
+  width: min(800px, 95vw);
 }
 dialog[data-size=xl] {
-  width: max(800px, 95vw);
+  width: min(800px, 95vw);
 }
 dialog[data-open] {
   opacity: 1;

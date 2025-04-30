@@ -13,6 +13,15 @@ $backdrop: rgba(0, 0, 0, .15);
 $background-modal: #fff;
 $border-modal: 1px solid #f9f9f9;
 
+body:has(dialog[data-open]):after {
+    content: "";
+    z-index: 100;
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    background-color: rgba(0, 0, 0, .15);
+}
+
 dialog {
     display: block;
     height: fit-content;
@@ -23,6 +32,7 @@ dialog {
     border-radius: .75rem;
     margin: auto;
 
+    z-index: 1000;
     position: fixed;
     top: 0; bottom: 0;
     left: 0; right: 0;
@@ -32,16 +42,16 @@ dialog {
     transform: translate(0) scale(.98);
 
     &[data-size=s] {
-        width: max($small-width, $max-width);
+        width: min($small-width, $max-width);
     }
     &[data-size=m] {
-        width: max($medium-width, $max-width);
+        width: min($medium-width, $max-width);
     }
     &[data-size=l] {
-        width: max($large-width, $max-width);
+        width: min($large-width, $max-width);
     }
     &[data-size=xl] {
-        width: max($large-width, $max-width);
+        width: min($large-width, $max-width);
     }
 
     &[data-open] {
