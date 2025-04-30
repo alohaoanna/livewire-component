@@ -1,6 +1,6 @@
 <?php
 
-namespace OANNA\Compo\Concerns;
+namespace OANNA\Concerns;
 
 use Livewire\Component;
 

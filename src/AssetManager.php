@@ -1,6 +1,6 @@
 <?php
 
-namespace OANNA\Compo;
+namespace OANNA;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Blade;
@@ -17,28 +17,28 @@ class AssetManager
 
     public function registerAssetDirective()
     {
-        Blade::directive('compoScripts', function ($expression) {
+        Blade::directive('oannaScripts', function ($expression) {
             return <<<PHP
             <?php app('livewire')->forceAssetInjection(); ?>
-            {!! app('compo')->scripts($expression) !!}
+            {!! app('oanna')->scripts($expression) !!}
             PHP;
         });
 
-        Blade::directive('compoStyles', function ($expression) {
+        Blade::directive('oannaStyles', function ($expression) {
             return <<<PHP
-            {!! app('compo')->appearance($expression) !!}
+            {!! app('oanna')->appearance($expression) !!}
             PHP;
         });
     }
 
     public static function scripts($options = [])
     {
-        // TODO RETURN JS SCRIPT
+        return '<script src="/oanna/oanna.min.js"></script>';
     }
 
     public static function appearance($options = [])
     {
-        // TODO RETURN CSS APPEARANCE
+        return '<<link rel="stylesheet" href="/oanna/oanna.css">';
     }
 
     public function pretendResponseIsFile($file, $contentType = 'application/javascript; charset=utf-8')

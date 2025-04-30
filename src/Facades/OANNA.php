@@ -1,6 +1,6 @@
 <?php
 
-namespace OANNA\Compo;
+namespace OANNA\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Facade;
  * @method static modals();
  * @method static void toast($text, $heading = null, $duration = 5000, $variant = null, $position = null);
  *
- * @see CompoManager
+ * @see OannaManager
  */
-class Compo extends Facade
+class OANNA extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'compo';
+        return 'oanna';
     }
 }

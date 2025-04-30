@@ -1,23 +1,22 @@
 <?php
 
-namespace OANNA\Compo;
+namespace OANNA;
 
 use Illuminate\View\Compilers\ComponentTagCompiler;
-use OANNA\Compo\Compo;
 
-class CompoTagCompiler extends ComponentTagCompiler
+class OannaTagCompiler extends ComponentTagCompiler
 {
     public function componentString(string $component, array $attributes)
     {
         // A component that forwards all data, attributes, and named slots to another component...
-        if ($component === 'compo::delegate-component') {
+        if ($component === 'oanna::delegate-component') {
             $component = $attributes['component'];
 
             $class = \Illuminate\View\AnonymousComponent::class;
 
             // Laravel 12+ uses xxh128 hashing for views https://github.com/laravel/framework/pull/52301...
-            return "<?php if (!Compo::componentExists(\$name = {$component})) throw new \Exception(\"Compo component [{\$name}] does not exist.\"); ?>##BEGIN-COMPONENT-CLASS##@component('{$class}', 'compo::' . {$component}, [
-    'view' => (app()->version() >= 12 ? hash('xxh128', 'compo') : md5('compo')) . '::' . {$component},
+            return "<?php if (!OANNA::componentExists(\$name = {$component})) throw new \Exception(\"OANNA component [{\$name}] does not exist.\"); ?>##BEGIN-COMPONENT-CLASS##@component('{$class}', 'oanna::' . {$component}, [
+    'view' => (app()->version() >= 12 ? hash('xxh128', 'oanna') : md5('oanna')) . '::' . {$component},
     'data' => \$__env->getCurrentComponentData(),
 ])
 <?php \$component->withAttributes(\$attributes->getAttributes()); ?>";
@@ -39,7 +38,7 @@ class CompoTagCompiler extends ComponentTagCompiler
         $pattern = "/
             <
                 \s*
-                compo[\:]([\w\-\:\.]*)
+                oanna[\:]([\w\-\:\.]*)
                 (?<attributes>
                     (?:
                         \s+
@@ -86,7 +85,7 @@ class CompoTagCompiler extends ComponentTagCompiler
 
             $attributes = $this->getAttributesFromAttributeString($matches['attributes']);
 
-            return $this->componentString('compo::'.$matches[1], $attributes);
+            return $this->componentString('oanna::'.$matches[1], $attributes);
         }, $value);
     }
 
@@ -103,7 +102,7 @@ class CompoTagCompiler extends ComponentTagCompiler
         $pattern = "/
             <
                 \s*
-                compo[\:]([\w\-\:\.]*)
+                oanna[\:]([\w\-\:\.]*)
                 \s*
                 (?<attributes>
                     (?:
@@ -156,10 +155,10 @@ class CompoTagCompiler extends ComponentTagCompiler
 
                 unset($attributes['slot']);
 
-                return '@slot('.$slot.') ' . $this->componentString('compo::'.$matches[1], $attributes)."\n@endComponentClass##END-COMPONENT-CLASS##" . ' @endslot';
+                return '@slot('.$slot.') ' . $this->componentString('oanna::'.$matches[1], $attributes)."\n@endComponentClass##END-COMPONENT-CLASS##" . ' @endslot';
             }
 
-            return $this->componentString('compo::'.$matches[1], $attributes)."\n@endComponentClass##END-COMPONENT-CLASS##";
+            return $this->componentString('oanna::'.$matches[1], $attributes)."\n@endComponentClass##END-COMPONENT-CLASS##";
         }, $value);
     }
 
@@ -171,6 +170,6 @@ class CompoTagCompiler extends ComponentTagCompiler
      */
     protected function compileClosingTags(string $value)
     {
-        return preg_replace("/<\/\s*compo[\:][\w\-\:\.]*\s*>/", ' @endComponentClass##END-COMPONENT-CLASS##', $value);
+        return preg_replace("/<\/\s*oanna[\:][\w\-\:\.]*\s*>/", ' @endComponentClass##END-COMPONENT-CLASS##', $value);
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace OANNA\Compo;
+namespace OANNA;
 
-use OANNA\Compo\Concerns\InteractsWithComponents;
+use OANNA\Concerns\InteractsWithComponents;
 use Illuminate\Support\Str;
 use function Livewire\on;
 
-class CompoManager
+class OannaManager
 {
     use InteractsWithComponents;
 
@@ -131,9 +131,9 @@ class CompoManager
     {
         // Laravel 12+ uses xxh128 hashing for views https://github.com/laravel/framework/pull/52301...
         if (app()->version() >= 12) {
-            return app('view')->exists(hash('xxh128', 'compo') . '::' . $name);
+            return app('view')->exists(hash('xxh128', 'oanna') . '::' . $name);
         }
 
-        return app('view')->exists(md5('compo') . '::' . $name);
+        return app('view')->exists(md5('oanna') . '::' . $name);
     }
 }

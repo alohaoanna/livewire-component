@@ -5,8 +5,8 @@
   "main": "compo.js",
   "scripts": {
     "build": "npm run minify && npm run compile:sass",
-    "minify": "minify compo.js > ../dist/compo.min.js",
-    "compile:sass": "sass scss/compo.scss ../dist/compo.css"
+    "minify": "minify oanna.js > ../dist/oanna.min.js",
+    "compile:sass": "sass scss/oanna.scss ../dist/oanna.css"
   },
   "author": "",
   "license": "ISC",

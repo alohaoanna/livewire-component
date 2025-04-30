@@ -1,23 +1,23 @@
 <?php
 
-namespace OANNA\Compo;
+namespace OANNA;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class CompoServiceProvider extends PackageServiceProvider
+class OannaServiceProvider extends PackageServiceProvider
 {
     public function registeringPackage()
     {
         parent::registeringPackage();
 
-        $this->app->alias(CompoManager::class, 'compo');
+        $this->app->alias(OannaManager::class, 'oanna');
 
-        $this->app->singleton(CompoManager::class);
+        $this->app->singleton(OannaManager::class);
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('Compo', \OANNA\Compo\Compo::class);
+        $loader->alias('OANNA', Facades\OANNA::class);
     }
 
     public function bootingPackage()
@@ -30,7 +30,7 @@ class CompoServiceProvider extends PackageServiceProvider
 
         AssetManager::boot();
 
-        app('compo')->boot();
+        app('oanna')->boot();
     }
 
     public function configurePackage(Package $package): void
@@ -45,16 +45,16 @@ class CompoServiceProvider extends PackageServiceProvider
 
     public function bootComponentPath()
     {
-        if (file_exists(resource_path('views/compo'))) {
-            Blade::anonymousComponentPath(resource_path('views/compo'), 'compo');
+        if (file_exists(resource_path('views/oanna'))) {
+            Blade::anonymousComponentPath(resource_path('views/oanna'), 'oanna');
         }
 
-        Blade::anonymousComponentPath(__DIR__.'/../stubs/resources/views/compo', 'compo');
+        Blade::anonymousComponentPath(__DIR__.'/../stubs/resources/views/oanna', 'oanna');
     }
 
     public function bootTagCompiler()
     {
-        $compiler = new CompoTagCompiler(
+        $compiler = new OannaTagCompiler(
             app('blade.compiler')->getClassComponentAliases(),
             app('blade.compiler')->getClassComponentNamespaces(),
             app('blade.compiler')

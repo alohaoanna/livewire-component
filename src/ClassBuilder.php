@@ -1,6 +1,6 @@
 <?php
 
-namespace OANNA\Compo;
+namespace OANNA;
 
 use Illuminate\Support\Arr;
 use Stringable;

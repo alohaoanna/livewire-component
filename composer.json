@@ -36,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "OANNA\\Compo\\": "src/"
+            "OANNA\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OANNA\\Compo\\Tests\\": "tests/",
+            "OANNA\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "OANNA\\Compo\\CompoServiceProvider"
+                "OANNA\\OannaServiceProvider"
             ],
             "aliases": {
-                "Compo": "OANNA\\Compo\\Facades\\Compo"
+                "Compo": "OANNA\\Facades\\OANNA"
             }
         }
     },
