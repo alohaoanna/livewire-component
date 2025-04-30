@@ -40,7 +40,8 @@ class OannaServiceProvider extends PackageServiceProvider
          *
          * More info: https://github.com/spatie/laravel-package-tools
          */
-        $package->name('livewire-component');
+        $package->name('livewire-component')
+            ->hasConfigFile('livewire-component');
     }
 
     public function bootComponentPath()
