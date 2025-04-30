@@ -1,23 +1,24 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "oanna/livewire-component",
+    "description": "Package de component livewire OANNA",
     "keywords": [
-        ":vendor_name",
+        "oanna",
         "laravel",
-        ":package_slug"
+        "livewire-component"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/alohaoanna/livewire-component",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Robin Thijsen",
+            "email": "robin@oanna.be",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.4",
+        "php": "^8.3",
         "spatie/laravel-package-tools": "^1.16",
+        "livewire/livewire": "^v3.6.3",
         "illuminate/contracts": "^10.0||^11.0||^12.0"
     },
     "require-dev": {
@@ -35,13 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "OANNA\\Compo\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "OANNA\\Compo\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "CompoServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Compo": "OANNA\\Compo\\Facades\\Compo"
             }
         }
     },
