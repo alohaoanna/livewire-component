@@ -4,8 +4,6 @@
 
 @props([
     'iconTrailing' => null,
-    'variant' => 'outline',
-    'iconVariant' => null,
     'iconLeading' => null,
     'type' => 'button',
     'loading' => null,

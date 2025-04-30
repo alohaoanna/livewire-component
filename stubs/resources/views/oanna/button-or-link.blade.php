@@ -1,5 +1,5 @@
 @php
-extract(Flux::forwardedAttributes($attributes, [
+extract(Oanna::forwardedAttributes($attributes, [
     'type',
     'current',
     'href',
