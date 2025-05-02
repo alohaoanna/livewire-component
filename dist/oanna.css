@@ -1,3 +1,10 @@
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+}
+
 /* -------------------------------------
  * MODAL
  * -----------------------------------*/
@@ -13,20 +20,33 @@ body:has(dialog[data-open]):after {
 }
 
 dialog {
-  display: block;
+  display: none;
+  position: absolute;
+  inset-inline-start: 0px;
+  inset-inline-end: 0px;
+  width: fit-content;
   height: fit-content;
-  max-height: 95vh;
-  background-color: #fff;
-  border: 1px solid #f9f9f9;
-  width: min(600px, 95vw);
-  border-radius: 0.75rem;
-  margin: auto;
-  z-index: 1000;
+  background-color: canvas;
+  color: canvastext;
+  border-width: initial;
+  border-style: solid;
+  border-color: initial;
+  border-image: initial;
+  padding: 1em;
+  interactivity: auto;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset-block-start: 0px;
+  inset-block-end: 0px;
+  max-width: calc(100% - 2em - 6px);
+  max-height: calc(100% - 2em - 6px);
+  user-select: text;
+  visibility: visible;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid #f9f9f9 !important;
+  background-color: #fff !important;
+  margin: auto;
+  overlay: auto !important;
   opacity: 0;
   transition: all 0.2s;
   transform: translate(0) scale(0.98);
@@ -43,18 +63,18 @@ dialog[data-size=l] {
 dialog[data-size=xl] {
   width: min(800px, 95vw);
 }
+dialog[open] {
+  display: block;
+}
 dialog[data-open] {
   opacity: 1;
   transition: all 0.35s;
   transform: translate(0) scale(1);
 }
 dialog[data-open]::backdrop {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  transition: all 0.15s;
+  transform: translate(0) scale(1);
 }
 dialog div[data-modal-close] {
   position: absolute;
@@ -79,6 +99,19 @@ dialog div[data-modal-close] > button svg {
 }
 dialog div[data-modal-close] > button:hover {
   background-color: color-mix(in oklab, oklch(27.4% 0.006 286.033deg) 5%, transparent);
+}
+dialog::backdrop {
+  margin: auto;
+  color: canvastext;
+  interactivity: auto;
+  user-select: text;
+  visibility: visible;
+  position: fixed;
+  inset: 0px;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: all 75ms;
+  background-color: rgba(0, 0, 0, 0.2509803922);
 }
 
 /* -------------------------------------

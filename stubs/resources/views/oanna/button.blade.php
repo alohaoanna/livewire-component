@@ -1,25 +1,12 @@
-@php $iconTrailing = $iconTrailing ??= $attributes->pluck('icon:trailing'); @endphp
-@php $iconLeading = $iconLeading ??= $attributes->pluck('icon:leading'); @endphp
-@php $iconVariant = $iconVariant ??= $attributes->pluck('icon:variant'); @endphp
-
 @props([
-    'iconTrailing' => null,
-    'iconLeading' => null,
     'type' => 'button',
     'loading' => null,
     'size' => 'base',
-    'square' => null,
-    'inset' => null,
-    'icon' => null,
+    'variant' => 'default',
     'kbd' => null,
 ])
 
 @php
-    $iconLeading = $icon ??= $iconLeading;
-
-    // Button should be a square if it has no text contents...
-    $square ??= $slot->isEmpty();
-
     $isTypeSubmitAndNotDisabledOnRender = $type === 'submit' && ! $attributes->has('disabled');
 
     $isJsMethod = str_starts_with($attributes->whereStartsWith('wire:click')->first() ?? '', '$js.');
@@ -37,38 +24,25 @@
         }
     }
 
+    $attributes->set('class', $attributes->get('class') . " button button--{$variant}");
+
     $target = $attributes->whereStartsWith('wire:click')->first();
 @endphp
 
-<oanna:button-or-link>
-    <?php if ($loading): ?>
-    <div class="absolute inset-0 flex items-center justify-center opacity-0" wire:loading.flex.remove wire:target="{{ $target }}">
-        <oanna:icon icon="loading" :variant="$iconVariant" :class="$iconClasses" />
-    </div>
-    <?php endif; ?>
+<oanna:button-or-link :$attributes :$type>
+    @if ($loading)
+        <div class="absolute inset-0 flex items-center justify-center opacity-0" wire:loading.flex.remove wire:target="{{ $target }}">
+            <oanna:icon icon="loading" />
+        </div>
+    @endif
 
-    <?php if (is_string($iconLeading) && $iconLeading !== ''): ?>
-    <oanna:icon :icon="$iconLeading" :variant="$iconVariant" :class="$iconClasses" />
-    <?php elseif ($iconLeading): ?>
-    {{ $iconLeading }}
-    <?php endif; ?>
+    @if ($loading && ! $slot->isEmpty())
+        <span>{{ $slot }}</span>
+    @else
+        {{ $slot }}
+    @endif
 
-    <?php if ($loading && ! $slot->isEmpty()): ?>
-    {{-- If we have a loading indicator, we need to wrap it in a span so it can be a target of *:opacity-0... --}}
-    <span>{{ $slot }}</span>
-    <?php else: ?>
-    {{ $slot }}
-    <?php endif; ?>
-
-    <?php if ($kbd): ?>
-    <div class="text-xs text-zinc-500 dark:text-zinc-400">{{ $kbd }}</div>
-    <?php endif; ?>
-
-    <?php if (is_string($iconTrailing) && $iconTrailing !== ''): ?>
-    {{-- Adding the extra margin class inline on the icon component below was causing a double up, so it needs to be added here first... --}}
-        <?php $iconClasses->add($square ? '' : '-ms-1'); ?>
-    <flux:icon :icon="$iconTrailing" :variant="$iconVariant" :class="$iconClasses" />
-    <?php elseif ($iconTrailing): ?>
-    {{ $iconTrailing }}
-    <?php endif; ?>
+    @if ($kbd)
+        <div class="text-xs text-zinc-500 dark:text-zinc-400">{{ $kbd }}</div>
+    @endif
 </oanna:button-or-link>

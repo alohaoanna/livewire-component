@@ -10,15 +10,15 @@
 @endphp
 
 <div class="form-group {{ $attributes->get('class:container') }}">
-    <?php if (! is_null($label)); ?>
-    <label for="">
-        {{ $label }} <?php if ($required); ?><sup>*</sup><?php endif; ?>
-    </label>
-    <?php endif; ?>
+    @if (! is_null($label))
+        <label for="{{ $target }}">
+            {{ $label }} @if ($required)<sup>*</sup>@endif
+        </label>
+    @endif
 
     <input type="{{ $type }}" {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror" />
 
     @error($target)
-        <p>{{ $message }}</p>
+    <p>{{ $message }}</p>
     @enderror
 </div>

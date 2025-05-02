@@ -32,3 +32,8 @@ testbench.yaml
 /coverage
 
 /node
+/node/node_modules
+/configure.php
+phpunit.xml.dist
+tests
+/dist/oanna.css.map

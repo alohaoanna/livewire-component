@@ -1,4 +1,4 @@
 @props([])
 
-<div data-oanna-toastr wire:ignore></div>
+<oanna-toast data-oanna-toastr wire:ignore></oanna-toast>
 

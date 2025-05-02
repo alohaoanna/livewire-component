@@ -17,11 +17,11 @@
 @endphp
 
 <div class="form-group form-group--select {{ $attributes->get('class:container') }}">
-    <?php if (! is_null($label)); ?>
+    @if (! is_null($label))
         <label for="{{ $id }}">
-            {{ $label }} <?php if ($required); ?><sup>*</sup><?php endif; ?>
+            {{ $label }} @if ($required)<sup>*</sup>@endif
         </label>
-    <?php endif; ?>
+    @endif
 
     <div class="container">
         <select {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror">

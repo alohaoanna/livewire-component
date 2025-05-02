@@ -19,11 +19,11 @@
 <div class="form-group form-group--radio {{ $attributes->get('class:container') }}">
     <input type="radio" {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror" />
 
-    <?php if (! is_null($label)); ?>
+    @if (! is_null($label))
         <label for="{{ $id }}">
-            {{ $label }} <?php if ($required); ?><sup>*</sup><?php endif; ?>
+            {{ $label }} @if ($required)<sup>*</sup>@endif
         </label>
-    <?php endif; ?>
+    @endif
 
     @error($target)
         <p>{{ $message }}</p>

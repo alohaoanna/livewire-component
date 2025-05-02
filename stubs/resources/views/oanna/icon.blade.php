@@ -20,11 +20,11 @@
     }
 @endphp
 
-<?php if ($isFontawesome); ?>
+@if ($isFontawesome)
     <i class="{{ $class }}" data-oanna-icon></i>
-<?php else; ?>
+@else
     <svg data-oanna-icon>
         <use xlink:href="{{ $path }}"></use>
     </svg>
-<?php endif; ?>
+@endif
 

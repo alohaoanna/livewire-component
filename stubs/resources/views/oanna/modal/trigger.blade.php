@@ -2,6 +2,6 @@
     "name",
 ])
 
-<button data-oanna-modal-trigger x-on:click="$wire.dispatch('modal-show', {'name': @js($name)})" {{ $attributes }}>
+<button data-oanna-modal-trigger x-on:click="$oanna.modal(@js($name)).show()" {{ $attributes }}>
     {!! $slot !!}
 </button>
