@@ -5,7 +5,7 @@
 
 @php
     $required = $attributes->has('required') && $attributes->get('required');
-    $target = $attributes->whereStartsWith('wire:click')->first();
+    $target = $attributes->whereStartsWith('wire:model')->first();
 
     if (! $attributes->has('id')) {
         $attributes->merge(["id" => $target]);
@@ -16,7 +16,7 @@
     }
 @endphp
 
-<div class="form-group form-group--checkbox {{ $attributes->get('class:container') }}">
+<div class="form-group form-group--checkbox {{ $attributes->get('container:class') }}">
     <input type="checkbox" {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror" />
 
     @if (! is_null($label))
@@ -25,7 +25,5 @@
         </label>
     @endif
 
-    @error($target)
-        <p>{{ $message }}</p>
-    @enderror
+    <oanna:form.error :name="$target" />
 </div>

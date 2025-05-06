@@ -3,6 +3,6 @@
     'align' => 'start',
 ])
 
-<oanna-dropdown data-oanna-dropdown data-position="{{ $position }} {{ $align }}" {{ $attributes }}>
+<oanna-dropdown data-oanna-dropdown data-position="{{ $position }} {{ $align }}" {{ $attributes }} wire:ignore>
     {{ $slot }}
 </oanna-dropdown>

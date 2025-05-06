@@ -6,7 +6,7 @@
 
 @php
     $required = $attributes->has('required') && $attributes->get('required');
-    $target = $attributes->whereStartsWith('wire:model')->first();
+    $target = $attributes->whereStartsWith('wire:click')->first();
 @endphp
 
 <div class="form-group {{ $attributes->get('container:class') }}">
@@ -16,7 +16,9 @@
         </label>
     @endif
 
-    <input type="{{ $type }}" {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror" />
+    <textarea {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror">
+
+    </textarea>
 
     <oanna:form.error :name="$target" />
 </div>

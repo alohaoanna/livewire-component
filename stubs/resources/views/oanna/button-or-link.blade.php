@@ -23,7 +23,7 @@ extract(Oanna::forwardedAttributes($attributes, [
         {{ $slot }}
     </a>
 @else
-    <button {{ $attributes->merge(['type' => $type) }}>
+    <button {{ $attributes->merge(['type' => $type]) }}>
         {{ $slot }}
     </button>
 @endif

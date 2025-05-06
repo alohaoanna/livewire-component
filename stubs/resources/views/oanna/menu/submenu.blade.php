@@ -7,8 +7,7 @@
         {{ $heading }}
 
         <x-slot:suffix>
-            <flux:icon icon="chevron-right" :variant="$iconVariant" :class="$iconClasses->add('rtl:hidden')" />
-            <flux:icon icon="chevron-left" :variant="$iconVariant" :class="$iconClasses->add('hidden rtl:inline')" />
+            <oanna:icon icon="chevron-right" suffix />
         </x-slot:suffix>
     </oanna:menu.item>
 

@@ -44,12 +44,12 @@ dialog {
   overflow: auto;
   border-radius: 12px;
   border: 1px solid #f9f9f9 !important;
-  background-color: #fff !important;
+  background-color: rgb(255, 255, 255) !important;
   margin: auto;
   overlay: auto !important;
   opacity: 0;
   transition: all 0.2s;
-  transform: translate(0) scale(0.98);
+  transform: translate(0) scale(0.95);
 }
 dialog[data-size=s] {
   width: min(400px, 95vw);
@@ -148,7 +148,7 @@ div[data-oanna-toastr] #toastr {
   max-width: 400px;
   padding: 10px;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   border: 1px solid #f9f9f9;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.15);
 }
@@ -208,6 +208,306 @@ div[data-oanna-toastr][data-position=top-left], div[data-oanna-toastr][data-posi
 }
 div[data-oanna-toastr][data-position=top-right], div[data-oanna-toastr][data-position=bottom-right] {
   margin-left: auto;
+}
+
+.button {
+  outline: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-weight: normal;
+  border-radius: 7px;
+  padding: 10px 15px;
+  line-height: 1;
+  font-size: 0.887rem;
+  letter-spacing: 1px;
+  text-transform: none;
+  box-shadow: none;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  color: rgb(255, 255, 255);
+  background-color: rgb(43, 127, 255);
+  border: 1px solid rgb(43, 127, 255);
+  filter: brightness(1);
+  transition: all 0.2s;
+}
+.button > i {
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  transform: scale(1);
+  transition: all 0.2s;
+}
+.button--dark {
+  background-color: #121212;
+  border-color: #121212;
+}
+.button--outline {
+  background-color: transparent;
+  border-color: #f9f9f9;
+  color: #121212;
+}
+.button--outline > i {
+  color: #121212;
+}
+.button--outline:hover, .button--outline:focus, .button--outline:active {
+  border-color: #121212;
+}
+.button--icon {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+.button--icon i {
+  color: #121212 !important;
+}
+.button--line {
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: rgb(43, 127, 255);
+  border: none;
+  width: fit-content;
+  font-size: 0.887rem;
+  font-weight: normal;
+  letter-spacing: unset;
+}
+.button--line:hover, .button--line:focus, .button--line:active {
+  color: rgb(43, 127, 255);
+  text-decoration: underline;
+}
+.button--danger {
+  background-color: rgb(251, 44, 54);
+  border-color: rgb(251, 44, 54);
+}
+.button--loader {
+  min-width: 70px;
+}
+.button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+}
+
+/* -------------------------------------
+ * DROPDOWN
+ * -----------------------------------*/
+[data-oanna-menu] {
+  all: unset;
+  display: revert;
+}
+[data-oanna-menu]:focus {
+  outline: hidden;
+}
+[data-oanna-menu][data-open] {
+  display: block;
+  min-width: 12rem;
+  border-radius: 10px;
+  border: 1px solid #e7e3e4;
+  background-color: #fff;
+  padding: 0.3125rem;
+}
+[data-oanna-menu] [data-oanna-menu-separator] {
+  margin-block: 0.3125rem;
+  margin-inline: -0.3125rem;
+  height: 1px;
+}
+[data-oanna-menu] [data-oanna-menu-item] {
+  font: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  opacity: 1;
+  background-color: transparent;
+  color: oklch(27.4% 0.006 286.033deg);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  text-align: start;
+  padding-block: 0.375rem;
+  padding-inline: 0.5rem;
+  border-radius: 5px;
+  align-items: center;
+  column-gap: 0.375rem;
+  width: 100%;
+  display: flex;
+  appearance: button;
+  cursor: pointer;
+}
+[data-oanna-menu] [data-oanna-menu-item]:hover {
+  background-color: rgba(212, 212, 216, 0.2);
+}
+[data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=primary] {
+  background-color: rgba(43, 127, 255, 0.15);
+  color: rgb(43, 127, 255);
+}
+[data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=primary] i, [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=primary] svg {
+  color: rgb(43, 127, 255);
+  fill: rgb(43, 127, 255);
+}
+[data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=danger] {
+  background-color: rgba(251, 44, 54, 0.15);
+  color: rgb(251, 44, 54);
+}
+[data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=danger] i, [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=danger] svg {
+  color: rgb(251, 44, 54);
+  fill: rgb(251, 44, 54);
+}
+
+/* -------------------------------------
+ * DROPDOWN
+ * -----------------------------------*/
+[data-oanna-separator] {
+  print-color-adjust: exact;
+  background-color: color-mix(in oklab, oklch(27.4% 0.006 286.033deg) 15%, transparent);
+  width: 100%;
+  height: 1px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+.form-group--checkbox, .form-group--radio {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 0.5rem;
+}
+.form-group--select .container {
+  position: relative;
+}
+.form-group--select .container .icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+}
+.form-group--select .container select {
+  appearance: none !important;
+}
+input:not(.form-group[type=checkbox], .form-group[type=radio]), .form-group select {
+  max-width: 100%;
+  width: 100%;
+  min-width: 300px;
+  appearance: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #f9f9f9;
+  border-radius: 5px;
+  padding: 14px;
+}
+
+i[data-oanna-icon] {
+  color: #121212;
+}
+i[data-oanna-icon][data-size=xxs] {
+  font-size: 0.6rem;
+}
+i[data-oanna-icon][data-size=xs] {
+  font-size: 0.75rem;
+}
+i[data-oanna-icon][data-size=s] {
+  font-size: 0.887rem;
+}
+i[data-oanna-icon][data-size=n] {
+  font-size: 1rem;
+}
+i[data-oanna-icon][data-size=m] {
+  font-size: 1.1rem;
+}
+i[data-oanna-icon][data-size=l] {
+  font-size: 1.272rem;
+}
+i[data-oanna-icon][data-size=xl] {
+  font-size: 1.618rem;
+}
+i[data-oanna-icon][data-size=xxl] {
+  font-size: 2.058rem;
+}
+i[data-oanna-icon][data-size=xxxl] {
+  font-size: 2.618rem;
+}
+i[data-oanna-icon][data-size=xxxxl] {
+  font-size: 3.756em;
+}
+i[data-oanna-icon][data-size=xxxxxl] {
+  font-size: 4.236em;
+}
+i[data-oanna-icon][data-size=xxxxxxl] {
+  font-size: 8.236em;
+}
+
+svg[data-oanna-icon] {
+  fill: #121212;
+}
+svg[data-oanna-icon][data-size=xxs] {
+  width: 0.6rem;
+  height: 0.6rem;
+}
+svg[data-oanna-icon][data-size=xs] {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+svg[data-oanna-icon][data-size=s] {
+  width: 0.887rem;
+  height: 0.887rem;
+}
+svg[data-oanna-icon][data-size=n] {
+  width: 1rem;
+  height: 1rem;
+}
+svg[data-oanna-icon][data-size=m] {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+svg[data-oanna-icon][data-size=l] {
+  width: 1.272rem;
+  height: 1.272rem;
+}
+svg[data-oanna-icon][data-size=xl] {
+  width: 1.618rem;
+  height: 1.618rem;
+}
+svg[data-oanna-icon][data-size=xxl] {
+  width: 2.058rem;
+  height: 2.058rem;
+}
+svg[data-oanna-icon][data-size=xxxl] {
+  width: 2.618rem;
+  height: 2.618rem;
+}
+svg[data-oanna-icon][data-size=xxxxl] {
+  width: 3.756em;
+  height: 3.756em;
+}
+svg[data-oanna-icon][data-size=xxxxxl] {
+  width: 4.236em;
+  height: 4.236em;
+}
+svg[data-oanna-icon][data-size=xxxxxxl] {
+  width: 8.236em;
+  height: 8.236em;
+}
+
+[data-oanna-kbd] {
+  font-size: 0.75rem;
+}
+
+[data-oanna-suffix] {
+  margin-left: auto;
+}
+
+[data-oanna-error] {
+  color: rgb(251, 44, 54);
+  font-size: 0.887rem;
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=oanna.css.map */

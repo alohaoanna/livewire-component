@@ -5,7 +5,7 @@
 
 @php
     $required = $attributes->has('required') && $attributes->get('required');
-    $target = $attributes->whereStartsWith('wire:click')->first();
+    $target = $attributes->whereStartsWith('wire:model')->first();
 
     if (! $attributes->has('id')) {
         $attributes->merge(["id" => $target]);
@@ -16,9 +16,9 @@
     }
 @endphp
 
-<div class="form-group form-group--select {{ $attributes->get('class:container') }}">
+<div class="form-group form-group--select {{ $attributes->get('container:class') }}">
     @if (! is_null($label))
-        <label for="{{ $id }}">
+        <label for="{{ $target }}">
             {{ $label }} @if ($required)<sup>*</sup>@endif
         </label>
     @endif
@@ -33,7 +33,5 @@
         </div>
     </div>
 
-    @error($target)
-        <p>{{ $message }}</p>
-    @enderror
+    <oanna:form.error :name="$target" />
 </div>
