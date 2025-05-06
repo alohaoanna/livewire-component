@@ -16,22 +16,14 @@
     }
 @endphp
 
-<div class="form-group form-group--select {{ $attributes->get('container:class') }}">
+<div class="form-group {{ $attributes->get('container:class') }}">
     @if (! is_null($label))
         <label for="{{ $target }}">
             {{ $label }} @if ($required)<sup>*</sup>@endif
         </label>
     @endif
 
-    <div class="container">
-        <select {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror">
-            {!! $slot !!}
-        </select>
-
-        <div class="icon">
-            <oanna:icon icon="angles-up-down" variant="regular" />
-        </div>
-    </div>
+    <input type="file" {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror" />
 
     <oanna:form.error :name="$target" />
 </div>

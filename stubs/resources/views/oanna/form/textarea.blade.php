@@ -6,7 +6,15 @@
 
 @php
     $required = $attributes->has('required') && $attributes->get('required');
-    $target = $attributes->whereStartsWith('wire:click')->first();
+    $target = $attributes->whereStartsWith('wire:model')->first();
+
+    if (! $attributes->has('id')) {
+        $attributes->offsetSet(["id" => $target]);
+    }
+
+    if (! $attributes->has('name')) {
+        $attributes->offsetSet(["name" => $target]);
+    }
 @endphp
 
 <div class="form-group {{ $attributes->get('container:class') }}">

@@ -40,7 +40,7 @@
     }
 
     if ($attributes->has('class')) {
-        $attributes->class(["button button--$variant", $attributes->offsetGet("class")]);
+        $attributes->offsetSet("class", $attributes->offsetGet("class") . " button button--$variant");
     }
     else {
         $attributes->offsetSet("class", "button button--$variant");

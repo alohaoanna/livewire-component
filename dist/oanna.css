@@ -222,7 +222,7 @@ div[data-oanna-toastr][data-position=top-right], div[data-oanna-toastr][data-pos
   align-items: center;
   font-weight: normal;
   border-radius: 7px;
-  padding: 10px 15px;
+  padding: 0.75rem 0.85rem;
   line-height: 1;
   font-size: 0.887rem;
   letter-spacing: 1px;
@@ -237,9 +237,11 @@ div[data-oanna-toastr][data-position=top-right], div[data-oanna-toastr][data-pos
   filter: brightness(1);
   transition: all 0.2s;
 }
-.button > i {
+.button > i,
+.button > svg {
   font-size: 1rem;
   color: rgb(255, 255, 255);
+  fill: rgb(255, 255, 255);
   transform: scale(1);
   transition: all 0.2s;
 }
@@ -252,8 +254,10 @@ div[data-oanna-toastr][data-position=top-right], div[data-oanna-toastr][data-pos
   border-color: #f9f9f9;
   color: #121212;
 }
-.button--outline > i {
+.button--outline > i,
+.button--outline > svg {
   color: #121212;
+  fill: #121212;
 }
 .button--outline:hover, .button--outline:focus, .button--outline:active {
   border-color: #121212;
@@ -264,8 +268,10 @@ div[data-oanna-toastr][data-position=top-right], div[data-oanna-toastr][data-pos
   padding: 0;
   border-radius: 0;
 }
-.button--icon i {
+.button--icon i,
+.button--icon > svg {
   color: #121212 !important;
+  fill: #121212 !important;
 }
 .button--line {
   padding: 0;
@@ -393,15 +399,61 @@ div[data-oanna-toastr][data-position=top-right], div[data-oanna-toastr][data-pos
 .form-group--select .container select {
   appearance: none !important;
 }
-input:not(.form-group[type=checkbox], .form-group[type=radio]), .form-group select {
+.form-group input:not(input[type=checkbox], input[type=radio]), .form-group select, .form-group textarea {
+  background: none;
   max-width: 100%;
   width: 100%;
   min-width: 300px;
   appearance: none;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #f9f9f9;
+  background-color: #f8f8f8;
+  border: 1px solid #f8f8f8;
   border-radius: 5px;
-  padding: 14px;
+  padding: unset;
+  padding-top: unset;
+  padding-bottom: unset;
+  padding-left: unset;
+  padding-right: unset;
+  padding: 0.5rem 0.75rem !important;
+}
+.form-group input[type=radio],
+.form-group input[type=checkbox] {
+  background: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 2px;
+  padding: 0 !important;
+  border: 1px solid #f8f8f8;
+  background-color: transparent;
+}
+.form-group input[type=radio]:after,
+.form-group input[type=checkbox]:after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  background-color: rgb(255, 255, 255);
+}
+.form-group input[type=radio]:checked,
+.form-group input[type=checkbox]:checked {
+  background-color: rgb(43, 127, 255);
+  border-color: rgb(43, 127, 255);
+}
+.form-group input[type=radio]:checked:after,
+.form-group input[type=checkbox]:checked:after {
+  opacity: 1;
+}
+.form-group input[type=radio] {
+  border-radius: 50%;
+}
+.form-group input[type=radio]:after {
+  border-radius: 50%;
 }
 
 i[data-oanna-icon] {
