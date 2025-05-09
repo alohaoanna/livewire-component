@@ -8,11 +8,11 @@
     $target = $attributes->whereStartsWith('wire:model')->first();
 
     if (! $attributes->has('id')) {
-        $attributes->offsetSet(["id" => $target]);
+        $attributes->offsetSet("id", $target);
     }
 
     if (! $attributes->has('name')) {
-        $attributes->offsetSet(["name" => $target]);
+        $attributes->offsetSet("name", $target);
     }
 @endphp
 

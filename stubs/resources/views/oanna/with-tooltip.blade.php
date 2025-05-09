@@ -1,10 +1,10 @@
-@php
-extract(Oanna::forwardedAttributes($attributes, [
-    'tooltipPosition',
-    'tooltipKbd',
-    'tooltip',
-]));
-@endphp
+{{--@php--}}
+{{--extract(Oanna::forwardedAttributes($attributes, [--}}
+{{--    'tooltipPosition',--}}
+{{--    'tooltipKbd',--}}
+{{--    'tooltip',--}}
+{{--]));--}}
+{{--@endphp--}}
 
 @php $tooltipPosition = $tooltipPosition ??= $attributes->pluck('tooltip:position'); @endphp
 @php $tooltipKbd = $tooltipKbd ??= $attributes->pluck('tooltip:kbd'); @endphp
