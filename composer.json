@@ -63,7 +63,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "OANNAServiceProvider"
+                "OANNA\\OANNAServiceProvider"
             ]
         }
     },
