@@ -2,7 +2,7 @@
     'heading' => '',
 ])
 
-<oanna-submenu data-oanna-menu-submenu>
+<oanna-submenu wire:submenu data-oanna-menu-submenu>
     <oanna:menu.item>
         {{ $heading }}
 

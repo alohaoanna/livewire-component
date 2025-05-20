@@ -26,6 +26,7 @@
 
 <div class="form-group form-group--select {{ $containerClass }}"
      data-livewire-id="{{ $id }}"
+     @if ($variant == "listbox" || $searchable || $multiple) wire:select @endif
      @if($variant == "listbox") data-oanna-select data-target="{{ $target }}" @endif
      @if($searchable) data-oanna-select-searchable @endif
      @if($multiple) data-oanna-select-multiple @endif>

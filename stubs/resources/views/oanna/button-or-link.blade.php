@@ -1,11 +1,11 @@
-{{--@php--}}
-{{--extract(Oanna::forwardedAttributes($attributes, [--}}
-{{--    'type',--}}
-{{--    'current',--}}
-{{--    'href',--}}
-{{--    'as',--}}
-{{--]));--}}
-{{--@endphp--}}
+@php
+extract(OANNA::forwardedAttributes($attributes, [
+    'type',
+    'current',
+    'href',
+    'as',
+]));
+@endphp
 
 @props([
     'type' => 'button',

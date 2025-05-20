@@ -1,14 +1,12 @@
-{{--@php--}}
-{{--extract(Oanna::forwardedAttributes($attributes, [--}}
-{{--    'tooltipPosition',--}}
-{{--    'tooltipKbd',--}}
-{{--    'tooltip',--}}
-{{--]));--}}
-{{--@endphp--}}
+@php
+extract(OANNA::forwardedAttributes($attributes, [
+    'tooltipPosition',
+    'tooltipKbd',
+    'tooltip',
+]));
+@endphp
 
-@php $tooltipPosition = $tooltipPosition ??= $attributes->pluck('tooltip:position'); @endphp
-@php $tooltipKbd = $tooltipKbd ??= $attributes->pluck('tooltip:kbd'); @endphp
-@php $tooltip = $tooltip ??= $attributes->pluck('tooltip'); @endphp
+@php $tooltip = $tooltip ??= $attributes->get('tooltip'); @endphp
 
 @props([
     'tooltipPosition' => 'top',
@@ -17,7 +15,7 @@
 ])
 
 @if ($tooltip)
-    <oanna:tooltip :content="$tooltip" :position="$tooltipPosition" :kbd="$tooltipKbd">
+    <oanna:tooltip :content="$tooltip">
         {{ $slot }}
     </oanna:tooltip>
 @else

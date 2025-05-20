@@ -6,7 +6,7 @@
     "dismissible" => true,
 ])
 
-<oanna-modal data-oanna-modal wire:ignore.self>
+<oanna-modal wire:modal data-oanna-modal wire:ignore.self>
     <dialog data-modal="{{ $name }}" data-size="{{ $size }}"
             @if ($variant) data-variant="{{ $variant }}" @endif
             @if ($position) data-position="{{ $position }}" @endif

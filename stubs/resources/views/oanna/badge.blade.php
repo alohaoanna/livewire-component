@@ -18,9 +18,9 @@
     $attributes->offsetSet('data-variant', $variant);
 @endphp
 
-<x-oanna.button-or-div :$attributes data-oanna-badge>
+<oanna:button-or-div :$attributes data-oanna-badge>
     @if (is_string($icon) && $icon !== '')
-    <x-oanna.icon :$icon :variant="$iconVariant" data-oanna-badge-icon />
+    <oanna:icon :$icon :variant="$iconVariant" data-oanna-badge-icon />
     @else
     {{ $icon }}
     @endif
@@ -30,10 +30,10 @@
     @if ($iconTrailing)
     <div class="ps-1 flex items-center" data-oanna-badge-icon:trailing>
             @if (is_string($iconTrailing))
-                <x-oanna.icon :icon="$iconTrailing" :variant="$iconVariant" />
+                <oanna:icon :icon="$iconTrailing" :variant="$iconVariant" />
             @else
                 {{ $iconTrailing }}
             @endif
         </div>
     @endif
-</x-oanna.button-or-div>
+</oanna:button-or-div>
