@@ -6,7 +6,7 @@ use OANNA\Concerns\InteractsWithComponents;
 use Illuminate\Support\Str;
 use function Livewire\on;
 
-class OannaManager
+class OANNA
 {
     use InteractsWithComponents;
 

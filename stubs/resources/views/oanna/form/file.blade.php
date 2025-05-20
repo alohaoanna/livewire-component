@@ -1,3 +1,5 @@
+@php $containerClass = $containerClass ??= $attributes->get('container:class') @endphp
+
 @props([
     "class" => "",
     "label" => null,
@@ -16,14 +18,14 @@
     }
 @endphp
 
-<div class="form-group {{ $attributes->get('container:class') }}">
+<div class="form-group form-group--file {{ $containerClass }}">
     @if (! is_null($label))
-        <label for="{{ $target }}">
+        <label for="{{ $attributes->get('id') }}">
             {{ $label }} @if ($required)<sup>*</sup>@endif
         </label>
     @endif
 
-    <input type="file" {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror" />
+    <input type="file" {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
 
     <oanna:form.error :name="$target" />
 </div>

@@ -1,3 +1,5 @@
+@php $containerClass = $containerClass ??= $attributes->get('container:class') @endphp
+
 @props([
     "class" => "",
     "label" => null,
@@ -16,11 +18,11 @@
     }
 @endphp
 
-<div class="form-group form-group--radio {{ $attributes->get('container:class') }}">
-    <input type="radio" {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror" />
+<div class="form-group form-group--radio {{ $containerClass }}">
+    <input type="radio" {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
 
     @if (! is_null($label))
-        <label for="{{ $id }}">
+        <label for="{{ $attributes->get('id') }}">
             {{ $label }} @if ($required)<sup>*</sup>@endif
         </label>
     @endif

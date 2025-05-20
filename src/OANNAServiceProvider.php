@@ -7,17 +7,17 @@ use Illuminate\View\ComponentAttributeBag;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class OannaServiceProvider extends PackageServiceProvider
+class OANNAServiceProvider extends PackageServiceProvider
 {
     public function registeringPackage()
     {
         parent::registeringPackage();
 
-        $this->app->alias(OannaManager::class, 'oanna');
+        $this->app->alias(OANNA::class, 'oanna');
 
-        $this->app->singleton(OannaManager::class);
+        $this->app->singleton(OANNA::class);
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('Oanna', Facades\OANNA::class);
+        $loader->alias('OANNA', Facades\OANNA::class);
     }
 
     public function bootingPackage()
@@ -55,7 +55,7 @@ class OannaServiceProvider extends PackageServiceProvider
 
     public function bootTagCompiler()
     {
-        $compiler = new OannaTagCompiler(
+        $compiler = new OANNATagCompiler(
             app('blade.compiler')->getClassComponentAliases(),
             app('blade.compiler')->getClassComponentNamespaces(),
             app('blade.compiler')

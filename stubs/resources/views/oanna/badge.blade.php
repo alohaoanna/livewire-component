@@ -1,0 +1,39 @@
+@php $iconTrailing = $iconTrailing ??= $attributes->pluck('icon:trailing'); @endphp
+@php $iconVariant = $iconVariant ??= $attributes->pluck('icon:variant'); @endphp
+
+@props([
+    "iconVariant" => "solid", // solid, regular, light, thin, brands
+    'iconTrailing' => null,
+    'variant' => 'default', // default, opacity, border
+    'color' => 'default', // default, gray, blue, green, yellow, red
+    'inset' => null,
+    'size' => 'm', // xs, s, m, l, xl
+    'icon' => null,
+    "name" => null,
+])
+
+@php
+    $attributes->offsetSet('data-color', $color);
+    $attributes->offsetSet('data-size', $size);
+    $attributes->offsetSet('data-variant', $variant);
+@endphp
+
+<x-oanna.button-or-div :$attributes data-oanna-badge>
+    @if (is_string($icon) && $icon !== '')
+    <x-oanna.icon :$icon :variant="$iconVariant" data-oanna-badge-icon />
+    @else
+    {{ $icon }}
+    @endif
+
+    {{ $name ?? $slot }}
+
+    @if ($iconTrailing)
+    <div class="ps-1 flex items-center" data-oanna-badge-icon:trailing>
+            @if (is_string($iconTrailing))
+                <x-oanna.icon :icon="$iconTrailing" :variant="$iconVariant" />
+            @else
+                {{ $iconTrailing }}
+            @endif
+        </div>
+    @endif
+</x-oanna.button-or-div>

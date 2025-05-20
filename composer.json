@@ -2,7 +2,7 @@
     "name": "oanna/livewire-component",
     "description": "Package de component livewire OANNA",
     "keywords": [
-        "oanna",
+        "OANNA",
         "laravel",
         "livewire-component"
     ],
@@ -63,11 +63,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "OANNA\\OannaServiceProvider"
-            ],
-            "aliases": {
-                "Compo": "OANNA\\Facades\\OANNA"
-            }
+                "OANNAServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

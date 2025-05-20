@@ -1,5 +1,6 @@
 @props([
     "icon",
+    "size" => "n",
     "variant" => "solid", // solid, regular, light, thin, brands
     "style" => null, // null, duotone
     "suffix" => null,
@@ -20,15 +21,19 @@
         $class .=  " " . $fontawesomeClass;
     }
     else {
-        $path = config('oanna.icon.sprite') . "#" . $icon;
+        $path = asset(config('oanna.icon.sprite') . $icon);
     }
 @endphp
 
-@if ($isFontawesome)
-    <i class="{{ $class }}" data-oanna-icon @if ($suffix) data-oanna-suffix @endif></i>
+@if ($icon == "loading")
+    <div data-loader data-size="{{ $size }}" {{ $attributes }}></div>
 @else
-    <svg data-oanna-icon @if ($suffix) data-oanna-suffix @endif>
-        <use xlink:href="{{ $path }}"></use>
-    </svg>
+    @if ($isFontawesome)
+        <i class="{{ $class }}" data-size="{{ $size }}" {{ $attributes }} data-oanna-icon @if ($suffix) data-oanna-suffix @endif></i>
+    @else
+        <svg data-oanna-icon data-size="{{ $size }}" {{ $attributes }} @if ($suffix) data-oanna-suffix @endif>
+            <use xlink:href="{{ $path }}"></use>
+        </svg>
+    @endif
 @endif
 

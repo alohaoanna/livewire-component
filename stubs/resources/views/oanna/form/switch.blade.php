@@ -1,3 +1,5 @@
+@php $containerClass = $containerClass ??= $attributes->get('container:class') @endphp
+
 @props([
     "class" => "",
     "label" => null,
@@ -16,22 +18,14 @@
     }
 @endphp
 
-<div class="form-group form-group--select {{ $attributes->get('container:class') }}">
+<div class="form-group form-group--switch {{ $containerClass }}">
+    <input type="checkbox" role="switch" {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
+
     @if (! is_null($label))
-        <label for="{{ $target }}">
+        <label for="{{ $attributes->get('id') }}">
             {{ $label }} @if ($required)<sup>*</sup>@endif
         </label>
     @endif
-
-    <div class="container">
-        <select {{ $attributes }} class="{{ $class }} @error($target)is-invalid @enderror">
-            {!! $slot !!}
-        </select>
-
-        <div class="icon">
-            <oanna:icon icon="angles-up-down" variant="regular" />
-        </div>
-    </div>
 
     <oanna:form.error :name="$target" />
 </div>

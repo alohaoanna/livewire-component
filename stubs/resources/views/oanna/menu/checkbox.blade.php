@@ -1,5 +1,5 @@
-@php $iconTrailing = $iconTrailing ??= $attributes->pluck('icon:trailing'); @endphp
-@php $iconClasses = $iconClasses ??= $attributes->pluck('icon:class'); @endphp
+@php $iconTrailing = $iconTrailing ??= $attributes->get('icon:trailing'); @endphp
+@php $iconClasses = $iconClasses ??= $attributes->get('icon:class'); @endphp
 
 @props([
     'iconTrailing' => null,
@@ -8,20 +8,40 @@
     'suffix' => null,
     'label' => null,
     'kbd' => null,
+    'checked' => null,
 ])
 
 @php
     if ($kbd) $suffix = $kbd;
+    $target = $attributes->whereStartsWith('wire:model')->first();
+
+    if (!$attributes->has('id')) {
+        $id = $target;
+
+        if ($attributes->has('value')) {
+            $id .= "." . $attributes->get('value');
+        }
+
+		$attributes->offsetSet('id', $id);
+    }
+    else {
+		$target = $attributes->get('id');
+    }
+
+    if (!$attributes->has('name')) {
+		$attributes->offsetSet('name', $target);
+    }
+    else {
+		$target = $attributes->get('name');
+    }
+
+    $id = $this->getId();
 @endphp
 
-<label for="{{ $target }}" {{ $attributes }} data-oanna-menu-item-has-icon data-oanna-menu-checkbox>
-    <div class="w-7">
-        <div class="hidden group-data-checked/menu-checkbox:block">
-            <oanna:icon icon="check" :class="$iconClasses" data-oanna-menu-item-icon />
-        </div>
-    </div>
+<input type="checkbox" class="hidden" {{ $attributes }} />
 
-    <input type="checkbox" id="{{ $target }}" name="{{ $target }}" {{ $attributes }} class="hidden" />
+<label for="{{ $attributes->get('id') }}" @if($checked)checked="{{ (string) $checked }}" @endif {{ $attributes }} data-oanna-menu-item data-oanna-menu-item-has-icon data-oanna-menu-checkbox>
+    <oanna:icon icon="check" :class="$iconClasses" data-oanna-menu-item-icon />
 
     {{ $label ?? $slot }}
 

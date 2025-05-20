@@ -1,12 +1,14 @@
 @php $iconTrailing = $iconTrailing ??= $attributes->pluck('icon:trailing'); @endphp
 @php $iconLeading = $iconLeading ??= $attributes->pluck('icon:leading'); @endphp
-@php $iconClasses = $iconClasses ??= $attributes->pluck('icon:class'); @endphp
+@php $iconVariant = $iconVariant ??= $attributes->pluck('icon:variant'); @endphp
+@php $iconSize = $iconSize ??= $attributes->pluck('icon:size'); @endphp
 
 @props([
     'iconTrailing' => null,
-    'variant' => 'primary',
+    'variant' => 'ghost',
     'iconLeading' => null,
-    'iconClass' => null,
+    'iconVariant' => null,
+    'iconSize' => null,
     'type' => 'button',
     'loading' => null,
     'size' => 'base',
@@ -49,6 +51,13 @@
 
 <oanna:with-tooltip :$attributes>
     <oanna:button-or-link :$type :$attributes data-oanna-button>
+        @if ($loading)
+            <div data-oanna-loader>
+                <div data-loader></div>
+            </div>
+        @endif
+
+
         @if (is_string($iconLeading) && $iconLeading !== '')
             <oanna:icon :icon="$iconLeading" :class="$iconClasses" />
         @else
@@ -56,7 +65,6 @@
         @endif
 
         @if ($loading && ! $slot->isEmpty())
-            {{-- If we have a loading indicator, we need to wrap it in a span so it can be a target of *:opacity-0... --}}
             <span>{{ $slot }}</span>
         @else
             {{ $slot }}
@@ -67,7 +75,6 @@
         @endif
 
         @if (is_string($iconTrailing) && $iconTrailing !== '')
-            {{-- Adding the extra margin class inline on the icon component below was causing a double up, so it needs to be added here first... --}}
             <oanna:icon :icon="$iconTrailing" :class="$iconClasses" />
         @elseif ($iconTrailing)
             {{ $iconTrailing }}

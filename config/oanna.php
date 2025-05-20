@@ -35,7 +35,7 @@ return [
         |
         */
 
-        'sprite' => asset('images/sprite.svg'),
+        'sprite' => 'images/sprite.svg',
 
     ],
 

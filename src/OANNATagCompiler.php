@@ -4,7 +4,7 @@ namespace OANNA;
 
 use Illuminate\View\Compilers\ComponentTagCompiler;
 
-class OannaTagCompiler extends ComponentTagCompiler
+class OANNATagCompiler extends ComponentTagCompiler
 {
     public function componentString(string $component, array $attributes)
     {
