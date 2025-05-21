@@ -1,3 +1,3 @@
-<div data-oanna-tooltip-content popover="manual" wire:ignore>
+<div data-oanna-tooltip-content popover="manual">
     {{ $slot }}
 </div>

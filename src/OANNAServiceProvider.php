@@ -61,7 +61,7 @@ class OANNAServiceProvider extends PackageServiceProvider
             app('blade.compiler')
         );
 
-        app()->bind('flux.compiler', fn () => $compiler);
+        app()->bind('oanna.compiler', fn () => $compiler);
 
         app('blade.compiler')->precompiler(function ($in) use ($compiler) {
             return $compiler->compile($in);
