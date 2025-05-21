@@ -1,12 +1,13 @@
 @props([
 	'content',
+	'position' => 'top',
 ])
 
 @php
     $name ??= (\Illuminate\Support\Str::uuid() . '-' . time());
 @endphp
 
-<oanna-tooltip wire:tooltip>
+<oanna-tooltip wire:tooltip data-position="{{ $position }}">
     {{ $slot }}
 
     <oanna:tooltip.content>
