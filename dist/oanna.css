@@ -406,6 +406,27 @@
 [data-oanna-button] span {
   color: inherit;
 }
+[data-oanna-button][data-button-variant=primary] {
+  background-color: #51A2FF;
+  border-color: #51A2FF;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-button][data-button-variant=primary] > svg {
+  fill: rgb(255, 255, 255);
+}
+[data-oanna-button][data-button-variant=primary]:hover {
+  background-color: rgb(55.5, 148.3706896552, 255);
+  border-color: rgb(55.5, 148.3706896552, 255);
+  color: rgb(255, 255, 255);
+}
+[data-oanna-button][data-button-variant=primary]:disabled {
+  background-color: rgba(81, 162, 255, 0.5);
+  border-color: rgba(81, 162, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+[data-oanna-button][data-button-variant=primary]:disabled > svg {
+  fill: rgba(255, 255, 255, 0.5);
+}
 [data-oanna-button][data-button-variant=dark] {
   background-color: #121212;
   border-color: #121212;

@@ -33,11 +33,11 @@ class OANNA
         return AssetManager::scripts($options);
     }
 
-    public function appearance($options = [])
+    public function assets($options = [])
     {
         $this->markAssetsRendered();
 
-        return AssetManager::appearance($options);
+        return AssetManager::assets($options);
     }
 
     public function classes($styles = null)

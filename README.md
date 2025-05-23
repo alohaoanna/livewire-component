@@ -17,6 +17,7 @@ Ajouter les scripts est les assets à vos templates.
 </head>
 <body>
     ...
+    @livewireScripts <!-- IMPORTANT !! PLACE LIVEWIRE SCRIPTS BEFORE. IT WON'T WORK ELSE -->
     @oannaScripts
     ...
 </body>
