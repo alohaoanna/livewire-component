@@ -2,6 +2,7 @@
 
 namespace OANNA\Concerns;
 
+use JetBrains\PhpStorm\ExpectedValues;
 use Livewire\Component;
 
 trait InteractsWithComponents
@@ -34,7 +35,7 @@ trait InteractsWithComponents
         });
     }
 
-    public function modal($name)
+    public static function modal($name)
     {
         return new class ($name) {
             public function __construct(public $name) {}
@@ -51,7 +52,7 @@ trait InteractsWithComponents
         };
     }
 
-    public function modals()
+    public static function modals()
     {
         return new class {
             public function close()
@@ -61,8 +62,13 @@ trait InteractsWithComponents
         };
     }
 
-    public function toast($text, $heading = null, $duration = 5000, $variant = null, $position = null)
-    {
+    public static function toast(
+        $text,
+        $heading = null,
+        $duration = 5000,
+        #[ExpectedValues([null, 'default', 'success', 'info', 'warning', 'error'])] $variant = null,
+        #[ExpectedValues([null, 'top left', 'top right', 'bottom left', 'bottom right'])] $position = null
+    ) {
         $params = [
             'duration' => $duration,
             'slots' => [],

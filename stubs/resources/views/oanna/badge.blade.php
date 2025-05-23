@@ -5,7 +5,7 @@
     "iconVariant" => "solid", // solid, regular, light, thin, brands
     'iconTrailing' => null,
     'variant' => 'default', // default, opacity, border
-    'color' => 'default', // default, gray, blue, green, yellow, red
+    'color' => 'zinc',
     'inset' => null,
     'size' => 'm', // xs, s, m, l, xl
     'icon' => null,

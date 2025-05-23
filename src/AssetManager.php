@@ -2,7 +2,6 @@
 
 namespace OANNA;
 
-use Flux\Flux;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Http\Request;
@@ -26,9 +25,10 @@ class AssetManager
             PHP;
         });
 
-        Blade::directive('oannaStyles', function ($expression) {
+        Blade::directive('oannaAssets', function ($expression) {
             return <<<PHP
-            {!! app('oanna')->appearance($expression) !!}
+             <?php app('livewire')->forceAssetInjection(); ?>
+            {!! app('oanna')->assets($expression) !!}
             PHP;
         });
     }
@@ -47,9 +47,22 @@ class AssetManager
         return '<script src="/oanna/oanna.min.js"></script>';
     }
 
-    public static function appearance($options = [])
+    public static function assets($options = [])
     {
-        //
+        $assets = '';
+
+        if (config('oanna.editor.ckeditor.enable')) {
+            $assets .= '<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.css" /> <script src="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.umd.js"></script>';
+        }
+        else {
+            $assets .= '<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet"> <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>';
+        }
+
+        if (is_string(config('oanna.icon.fontawesome'))) {
+            $assets .= ' <script src="'.config('oanna.icon.fontawesome').'" crossorigin="anonymous"></script>';
+        }
+
+        return $assets;
     }
 
     public function pretendResponseIsFile($file, $contentType = 'application/javascript; charset=utf-8')

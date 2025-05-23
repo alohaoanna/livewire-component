@@ -4,10 +4,27 @@
 composer require oanna/livewire-component
 ```
 
-You can publish the config file with:
-
 ```bash
 php artisan vendor:publish --tag="livewire-component-config"
+```
+
+Ajouter les scripts est les assets à vos templates. 
+```html
+<head>
+    ...
+    @oannaAssets
+    ...
+</head>
+<body>
+    ...
+    @oannaScripts
+    ...
+</body>
+```
+
+Importez les styles dans votre css/scss si nécessaire.
+```css
+@import "../../vendor/oanna/livewire-component/dist/oanna.min.css";
 ```
 
 ## Changelog

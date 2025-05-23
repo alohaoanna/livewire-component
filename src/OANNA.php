@@ -63,7 +63,6 @@ class OANNA
         ];
     }
 
-    // @deprecated - use extract(Flux::forwardedAttributes()) instead...
     public function restorePassThroughProps($attributes, $passThroughProps)
     {
         foreach ($passThroughProps as $passThroughProp) {

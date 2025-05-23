@@ -5,7 +5,7 @@
 
 @props([
     'iconTrailing' => null,
-    'variant' => 'ghost',
+    'variant' => 'filled',
     'iconLeading' => null,
     'iconVariant' => null,
     'iconSize' => null,
@@ -41,12 +41,8 @@
         }
     }
 
-    if ($attributes->has('class')) {
-        $attributes->offsetSet("class", $attributes->offsetGet("class") . " button button--$variant");
-    }
-    else {
-        $attributes->offsetSet("class", "button button--$variant");
-    }
+    $attributes->offsetSet('data-oanna-button', '');
+    $attributes->offsetSet('data-button-variant', $variant);
 @endphp
 
 <oanna:with-tooltip :$attributes>

@@ -1,3 +1,126 @@
+[data-oanna-kbd] {
+  font-size: 0.75rem;
+}
+
+[data-oanna-suffix] {
+  margin-left: auto;
+}
+
+[data-oanna-error] {
+  color: #FF6467;
+  font-size: 0.887rem;
+  font-weight: 400;
+}
+
+[data-oanna-loader] {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+}
+
+[data-oanna-menu-loader] {
+  margin-left: auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+[data-loader] {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgb(0, 0, 0);
+  animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
+}
+@keyframes l20-1 {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+  }
+  12.5% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+  62.5% {
+    clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+  }
+}
+@keyframes l20-2 {
+  0% {
+    transform: scaleY(1) rotate(0deg);
+  }
+  49.99% {
+    transform: scaleY(1) rotate(135deg);
+  }
+  50% {
+    transform: scaleY(-1) rotate(0deg);
+  }
+  100% {
+    transform: scaleY(-1) rotate(-135deg);
+  }
+}
+
+[data-oanna-loading] {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.02);
+  cursor: not-allowed;
+}
+[data-oanna-loading] > *:not([data-oanna-loader]) {
+  opacity: 0;
+  visibility: hidden;
+}
+[data-oanna-loading] [data-oanna-loader] {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-oanna-menu-loading] {
+  cursor: not-allowed;
+}
+[data-oanna-menu-loading] [data-oanna-menu-loader] {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-oanna-button-group] {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  gap: 0;
+}
+[data-oanna-button-group] > :first-child:not([data-oanna-button-group] > :first-child:has([data-oanna-button])), [data-oanna-button-group] > :first-child:has([data-oanna-button]) [data-oanna-button] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 2px solid rgba(0, 0, 0, 0.05) !important;
+}
+[data-oanna-button-group] > :not(:first-child, :last-child):not([data-oanna-button-group] > :not(:first-child, :last-child):has([data-oanna-button])), [data-oanna-button-group] > :not(:first-child, :last-child):has([data-oanna-button]) [data-oanna-button] {
+  border-radius: 0;
+  border-right: 2px solid rgba(0, 0, 0, 0.05) !important;
+}
+[data-oanna-button-group] > :last-child:not([data-oanna-button-group] > :last-child:has([data-oanna-button])), [data-oanna-button-group] > :last-child:has([data-oanna-button]) [data-oanna-button] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 /* -------------------------------------
  * BADGE
  * -----------------------------------*/
@@ -51,45 +174,209 @@
   width: 1.618rem;
   height: 1.618rem;
 }
-[data-oanna-badge][data-color=blue] {
-  background-color: rgb(43, 127, 255);
-  color: rgb(255, 255, 255);
-}
-[data-oanna-badge][data-color=green] {
-  background-color: rgb(110, 209, 60);
-}
-[data-oanna-badge][data-color=yellow] {
-  background-color: rgb(227, 213, 66);
+[data-oanna-badge][data-color=zinc] {
+  background-color: rgba(159, 159, 169, 0.5);
+  color: #9F9FA9;
 }
 [data-oanna-badge][data-color=red] {
-  background-color: rgb(251, 44, 54);
+  background-color: rgba(255, 100, 103, 0.5);
+  color: #FF6467;
 }
-[data-oanna-badge][data-variant=opacity][data-color=green] {
-  background-color: rgba(110, 209, 60, 0.1);
+[data-oanna-badge][data-color=orange] {
+  background-color: rgba(255, 137, 4, 0.5);
+  color: #FF8904;
 }
-[data-oanna-badge][data-variant=opacity][data-color=yellow] {
-  background-color: rgba(227, 213, 66, 0.1);
+[data-oanna-badge][data-color=amber] {
+  background-color: rgba(255, 185, 0, 0.5);
+  color: #FFB900;
 }
-[data-oanna-badge][data-variant=opacity][data-color=red] {
-  background-color: rgba(251, 44, 54, 0.1);
+[data-oanna-badge][data-color=yellow] {
+  background-color: rgba(253, 199, 0, 0.5);
+  color: #FDC700;
 }
-[data-oanna-badge][data-variant=border][data-color=green] {
-  background-color: rgba(110, 209, 60, 0.1);
-  border: 1px solid rgb(110, 209, 60);
+[data-oanna-badge][data-color=lime] {
+  background-color: rgba(154, 230, 0, 0.5);
+  color: #9AE600;
 }
-[data-oanna-badge][data-variant=border][data-color=yellow] {
-  background-color: rgba(227, 213, 66, 0.1);
-  border: 1px solid rgb(227, 213, 66);
+[data-oanna-badge][data-color=green] {
+  background-color: rgba(5, 223, 114, 0.5);
+  color: #05DF72;
+}
+[data-oanna-badge][data-color=emerald] {
+  background-color: rgba(0, 212, 146, 0.5);
+  color: #00D492;
+}
+[data-oanna-badge][data-color=teal] {
+  background-color: rgba(0, 213, 190, 0.5);
+  color: #00D5BE;
+}
+[data-oanna-badge][data-color=cyan] {
+  background-color: rgba(0, 211, 242, 0.5);
+  color: #00D3F2;
+}
+[data-oanna-badge][data-color=sky] {
+  background-color: rgba(0, 188, 255, 0.5);
+  color: #00BCFF;
+}
+[data-oanna-badge][data-color=blue] {
+  background-color: rgba(81, 162, 255, 0.5);
+  color: #51A2FF;
+}
+[data-oanna-badge][data-color=indigo] {
+  background-color: rgba(124, 134, 255, 0.5);
+  color: #7C86FF;
+}
+[data-oanna-badge][data-color=violet] {
+  background-color: rgba(166, 132, 255, 0.5);
+  color: #A684FF;
+}
+[data-oanna-badge][data-color=purple] {
+  background-color: rgba(194, 122, 255, 0.5);
+  color: #C27AFF;
+}
+[data-oanna-badge][data-color=fuchsia] {
+  background-color: rgba(237, 106, 255, 0.5);
+  color: #ED6AFF;
+}
+[data-oanna-badge][data-color=pink] {
+  background-color: rgba(251, 100, 182, 0.5);
+  color: #FB64B6;
+}
+[data-oanna-badge][data-color=rose] {
+  background-color: rgba(255, 99, 126, 0.5);
+  color: #FF637E;
+}
+[data-oanna-badge][data-variant=solid][data-color=zinc] {
+  background-color: #9F9FA9;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=red] {
+  background-color: #FF6467;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=orange] {
+  background-color: #FF8904;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=amber] {
+  background-color: #FFB900;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=yellow] {
+  background-color: #FDC700;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=lime] {
+  background-color: #9AE600;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=green] {
+  background-color: #05DF72;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=emerald] {
+  background-color: #00D492;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=teal] {
+  background-color: #00D5BE;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=cyan] {
+  background-color: #00D3F2;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=sky] {
+  background-color: #00BCFF;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=blue] {
+  background-color: #51A2FF;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=indigo] {
+  background-color: #7C86FF;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=violet] {
+  background-color: #A684FF;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=purple] {
+  background-color: #C27AFF;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=fuchsia] {
+  background-color: #ED6AFF;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=pink] {
+  background-color: #FB64B6;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=solid][data-color=rose] {
+  background-color: #FF637E;
+  color: rgb(255, 255, 255);
+}
+[data-oanna-badge][data-variant=border][data-color=zinc] {
+  border: 1px solid #9F9FA9;
 }
 [data-oanna-badge][data-variant=border][data-color=red] {
-  background-color: rgba(251, 44, 54, 0.1);
-  border: 1px solid rgb(251, 44, 54);
+  border: 1px solid #FF6467;
+}
+[data-oanna-badge][data-variant=border][data-color=orange] {
+  border: 1px solid #FF8904;
+}
+[data-oanna-badge][data-variant=border][data-color=amber] {
+  border: 1px solid #FFB900;
+}
+[data-oanna-badge][data-variant=border][data-color=yellow] {
+  border: 1px solid #FDC700;
+}
+[data-oanna-badge][data-variant=border][data-color=lime] {
+  border: 1px solid #9AE600;
+}
+[data-oanna-badge][data-variant=border][data-color=green] {
+  border: 1px solid #05DF72;
+}
+[data-oanna-badge][data-variant=border][data-color=emerald] {
+  border: 1px solid #00D492;
+}
+[data-oanna-badge][data-variant=border][data-color=teal] {
+  border: 1px solid #00D5BE;
+}
+[data-oanna-badge][data-variant=border][data-color=cyan] {
+  border: 1px solid #00D3F2;
+}
+[data-oanna-badge][data-variant=border][data-color=sky] {
+  border: 1px solid #00BCFF;
+}
+[data-oanna-badge][data-variant=border][data-color=blue] {
+  border: 1px solid #51A2FF;
+}
+[data-oanna-badge][data-variant=border][data-color=indigo] {
+  border: 1px solid #7C86FF;
+}
+[data-oanna-badge][data-variant=border][data-color=violet] {
+  border: 1px solid #A684FF;
+}
+[data-oanna-badge][data-variant=border][data-color=purple] {
+  border: 1px solid #C27AFF;
+}
+[data-oanna-badge][data-variant=border][data-color=fuchsia] {
+  border: 1px solid #ED6AFF;
+}
+[data-oanna-badge][data-variant=border][data-color=pink] {
+  border: 1px solid #FB64B6;
+}
+[data-oanna-badge][data-variant=border][data-color=rose] {
+  border: 1px solid #FF637E;
 }
 
 /* -------------------------------------
  * BUTTON
  * -----------------------------------*/
-.button {
+[data-oanna-button] {
   outline: none;
   appearance: none;
   border: none;
@@ -110,85 +397,153 @@
   text-decoration: none;
   text-align: center;
   white-space: nowrap;
-  color: rgb(255, 255, 255);
-  background-color: rgb(43, 127, 255);
-  border: 1px solid rgb(43, 127, 255);
-  filter: brightness(1);
-  transition: all 0.2s;
 }
-.button > i,
-.button > svg {
-  font-size: 1rem;
-  color: rgb(255, 255, 255);
+[data-oanna-button] > i,
+[data-oanna-button] > svg {
+  color: inherit;
   fill: rgb(255, 255, 255);
-  transform: scale(1);
-  transition: all 0.2s;
 }
-.button--dark {
+[data-oanna-button] span {
+  color: inherit;
+}
+[data-oanna-button][data-button-variant=dark] {
   background-color: #121212;
   border-color: #121212;
+  color: rgb(255, 255, 255);
 }
-.button--outline {
+[data-oanna-button][data-button-variant=dark] > svg {
+  fill: rgb(255, 255, 255);
+}
+[data-oanna-button][data-button-variant=dark]:hover {
+  background-color: rgb(0, 0, 0);
+  border-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+[data-oanna-button][data-button-variant=dark]:disabled {
+  background-color: rgba(18, 18, 18, 0.5);
+  border-color: rgba(18, 18, 18, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+[data-oanna-button][data-button-variant=dark]:disabled > svg {
+  fill: rgba(255, 255, 255, 0.5);
+}
+[data-oanna-button][data-button-variant=outline] {
   background-color: transparent;
-  border-color: #aaaaaa;
+  border-color: #ededed;
   color: #121212;
 }
-.button--outline > i,
-.button--outline > svg {
-  color: #121212;
+[data-oanna-button][data-button-variant=outline] > svg {
   fill: #121212;
 }
-.button--outline:hover, .button--outline:focus, .button--outline:active {
-  border-color: #121212;
+[data-oanna-button][data-button-variant=outline]:hover {
+  background-color: rgb(224.25, 224.25, 224.25);
 }
-.button--ghost {
+[data-oanna-button][data-button-variant=outline]:disabled {
+  border-color: rgba(237, 237, 237, 0.5);
+  color: rgba(18, 18, 18, 0.5);
+}
+[data-oanna-button][data-button-variant=outline]:disabled > svg {
+  fill: rgba(18, 18, 18, 0.5);
+}
+[data-oanna-button][data-button-variant=filled] {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
   color: #121212;
 }
-.button--ghost i,
-.button--ghost svg {
-  color: #121212;
+[data-oanna-button][data-button-variant=filled] > svg {
   fill: #121212;
 }
-.button--ghost span {
+[data-oanna-button][data-button-variant=filled]:hover {
+  background-color: rgb(235.25, 235.25, 235.25);
+  border-color: rgb(235.25, 235.25, 235.25);
+}
+[data-oanna-button][data-button-variant=filled]:disabled {
+  background-color: rgba(248, 248, 248, 0.5);
+  border-color: rgba(248, 248, 248, 0.5);
   color: #121212;
 }
-.button--icon {
+[data-oanna-button][data-button-variant=filled]:disabled > svg {
+  fill: rgba(18, 18, 18, 0.5);
+}
+[data-oanna-button][data-button-variant=ghost] {
   background-color: transparent;
-  border: none;
+  border-color: transparent;
+  color: #121212;
+}
+[data-oanna-button][data-button-variant=ghost] > svg {
+  fill: #121212;
+}
+[data-oanna-button][data-button-variant=ghost]:hover {
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+}
+[data-oanna-button][data-button-variant=ghost]:disabled {
+  background-color: rgba(248, 248, 248, 0.5);
+  border-color: rgba(248, 248, 248, 0.5);
+  color: #121212;
+}
+[data-oanna-button][data-button-variant=ghost]:disabled > svg {
+  fill: rgba(18, 18, 18, 0.5);
+}
+[data-oanna-button][data-button-variant=icon] {
+  background-color: transparent;
+  border-color: transparent;
   padding: 0;
   border-radius: 0;
+  color: #121212;
 }
-.button--icon i,
-.button--icon > svg {
-  color: #121212 !important;
-  fill: #121212 !important;
+[data-oanna-button][data-button-variant=icon] > svg {
+  fill: #121212;
 }
-.button--line {
+[data-oanna-button][data-button-variant=icon]:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+[data-oanna-button][data-button-variant=icon]:disabled > svg {
+  fill: rgba(18, 18, 18, 0.5);
+}
+[data-oanna-button][data-button-variant=line] {
+  background-color: transparent;
+  border-color: transparent;
   padding: 0;
   border-radius: 0;
-  background-color: transparent;
-  color: rgb(43, 127, 255);
-  border: none;
+  color: #51A2FF;
   width: fit-content;
   font-size: 0.887rem;
   font-weight: normal;
   letter-spacing: unset;
 }
-.button--line:hover, .button--line:focus, .button--line:active {
-  color: rgb(43, 127, 255);
+[data-oanna-button][data-button-variant=line]:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #51A2FF;
   text-decoration: underline;
 }
-.button--danger {
-  background-color: rgb(251, 44, 54);
-  border-color: rgb(251, 44, 54);
+[data-oanna-button][data-button-variant=line]:disabled {
+  color: rgba(81, 162, 255, 0.5);
 }
-.button--loader {
+[data-oanna-button][data-button-variant=line]:disabled > svg {
+  fill: rgba(81, 162, 255, 0.5);
+}
+[data-oanna-button][data-button-variant=danger] {
+  background-color: #FF6467;
+  border-color: #FF6467;
+  color: #121212;
+}
+[data-oanna-button][data-button-variant=danger]:hover {
+  background-color: rgb(255, 74.5, 77.9935483871);
+  border-color: rgb(255, 74.5, 77.9935483871);
+}
+[data-oanna-button][data-button-variant=danger]:disabled {
+  background-color: rgba(255, 100, 103, 0.5);
+}
+[data-oanna-button][data-button-variant=danger]:disabled > svg {
+  fill: rgba(18, 18, 18, 0.5);
+}
+[data-oanna-button][data-button-variant=loader] {
   min-width: 70px;
 }
-.button:disabled {
-  opacity: 0.5 !important;
+[data-oanna-button]:disabled {
   cursor: not-allowed;
 }
 
@@ -256,23 +611,23 @@
   cursor: pointer;
 }
 [data-oanna-menu] [data-oanna-menu-item]:hover {
-  background-color: rgba(115, 115, 115, 0.075);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=primary] {
-  background-color: rgba(43, 127, 255, 0.15);
-  color: rgb(43, 127, 255);
+  background-color: rgba(81, 162, 255, 0.15);
+  color: #51A2FF;
 }
 [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=primary] i, [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=primary] svg {
-  color: rgb(43, 127, 255);
-  fill: rgb(43, 127, 255);
+  color: #51A2FF;
+  fill: #51A2FF;
 }
 [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=danger] {
-  background-color: rgba(251, 44, 54, 0.15);
-  color: rgb(251, 44, 54);
+  background-color: rgba(255, 100, 103, 0.15);
+  color: #FF6467;
 }
 [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=danger] i, [data-oanna-menu] [data-oanna-menu-item]:hover[data-variant=danger] svg {
-  color: rgb(251, 44, 54);
-  fill: rgb(251, 44, 54);
+  color: #FF6467;
+  fill: #FF6467;
 }
 [data-oanna-menu] [data-oanna-menu-radio] i,
 [data-oanna-menu] [data-oanna-menu-radio] svg,
@@ -290,6 +645,9 @@
   opacity: 1;
 }
 
+/* -------------------------------------
+ * FORM
+ * -----------------------------------*/
 .form-group {
   display: flex;
   flex-direction: column;
@@ -361,8 +719,8 @@
 }
 .form-group input[type=radio]:checked,
 .form-group input[type=checkbox]:checked {
-  background-color: rgb(43, 127, 255);
-  border-color: rgb(43, 127, 255);
+  background-color: #51A2FF;
+  border-color: #51A2FF;
 }
 .form-group input[type=radio]:checked:after,
 .form-group input[type=checkbox]:checked:after {
@@ -392,7 +750,7 @@
   display: none;
 }
 .form-group input[role=switch]:checked {
-  background-color: rgb(43, 127, 255);
+  background-color: #51A2FF;
 }
 .form-group input[role=switch]:checked:before {
   left: calc(100% - 17.5px - 2.5px);
@@ -463,6 +821,9 @@
   background-color: rgb(245.45, 245.45, 245.45);
 }
 
+/* -------------------------------------
+ * ICONS
+ * -----------------------------------*/
 i[data-oanna-icon] {
   color: #121212;
 }
@@ -570,15 +931,8 @@ svg[data-oanna-icon][x-on\:click], svg[data-oanna-icon][wire\:click] {
 /* -------------------------------------
  * MODAL
  * -----------------------------------*/
-body:has(dialog[data-open]):after {
-  content: "";
-  z-index: 100;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.15);
+body:has(dialog[data-open]) {
+  overflow: hidden;
 }
 
 dialog {
@@ -691,7 +1045,7 @@ dialog div[data-modal-close] > button svg {
   width: 0.75rem;
 }
 dialog div[data-modal-close] > button:hover {
-  background-color: color-mix(in oklab, oklch(27.4% 0.006 286.033deg) 5%, transparent);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 dialog::backdrop {
   margin: auto;
@@ -701,28 +1055,30 @@ dialog::backdrop {
   visibility: visible;
   position: fixed;
   inset: 0px;
-  background: rgba(0, 0, 0, 0.1);
   opacity: 0;
   transition: all 0.2s;
-  background-color: rgba(0, 0, 0, 0.2509803922);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 /* -------------------------------------
- * DROPDOWN
+ * SEPARATOR
  * -----------------------------------*/
 [data-oanna-separator] {
   print-color-adjust: exact;
-  background-color: color-mix(in oklab, oklch(27.4% 0.006 286.033deg) 15%, transparent);
+  background-color: #27272A;
   width: 100%;
   height: 1px;
 }
 
+/* -------------------------------------
+ * TOOLTIP
+ * -----------------------------------*/
 [data-oanna-tooltip] [data-oanna-tooltip-content] {
   padding: 5px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.15);
   border-radius: 12px;
-  border: 1px solid #f9f9f9;
+  border: 1px solid #ededed;
   transition: all 0.2s;
   opacity: 0;
   transform: scale(0.98);
@@ -735,6 +1091,9 @@ dialog::backdrop {
   transform: scale(1);
 }
 
+/* -------------------------------------
+ * TOASTR
+ * -----------------------------------*/
 [data-oanna-toastr] {
   position: fixed;
   width: fit-content;
@@ -796,7 +1155,7 @@ dialog::backdrop {
   justify-content: space-between;
   column-gap: 20px;
   background-color: rgb(255, 255, 255);
-  border: 1px solid white;
+  border: 1px solid hsl(0, 0%, 110%);
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
 }
 [data-oanna-toastr] .container .content {
@@ -818,20 +1177,20 @@ dialog::backdrop {
   height: 1rem;
 }
 [data-oanna-toastr] .container .content .icons .success {
-  fill: rgb(110, 209, 60);
-  color: rgb(110, 209, 60);
+  fill: #05DF72;
+  color: #05DF72;
 }
 [data-oanna-toastr] .container .content .icons .info {
-  fill: rgb(43, 127, 255);
-  color: rgb(43, 127, 255);
+  fill: #51A2FF;
+  color: #51A2FF;
 }
 [data-oanna-toastr] .container .content .icons .warning {
-  fill: rgb(227, 213, 66);
-  color: rgb(227, 213, 66);
+  fill: #FDC700;
+  color: #FDC700;
 }
 [data-oanna-toastr] .container .content .icons .error {
-  fill: rgb(251, 44, 54);
-  color: rgb(251, 44, 54);
+  fill: #FF6467;
+  color: #FF6467;
 }
 [data-oanna-toastr] .container .content .slots {
   height: 100%;
@@ -872,129 +1231,6 @@ dialog::backdrop {
 }
 [data-oanna-toastr] .container .actions .close:hover {
   background-color: rgba(0, 0, 0, 0.05);
-}
-
-[data-oanna-kbd] {
-  font-size: 0.75rem;
-}
-
-[data-oanna-suffix] {
-  margin-left: auto;
-}
-
-[data-oanna-error] {
-  color: rgb(251, 44, 54);
-  font-size: 0.887rem;
-  font-weight: 400;
-}
-
-[data-oanna-loader] {
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  inset: 0;
-}
-
-[data-oanna-menu-loader] {
-  margin-left: auto;
-  opacity: 0;
-  visibility: hidden;
-}
-
-[data-loader] {
-  width: 15px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2px solid rgb(0, 0, 0);
-  animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
-}
-@keyframes l20-1 {
-  0% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
-  }
-  12.5% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
-  }
-  25% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
-  }
-  50% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
-  }
-  62.5% {
-    clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
-  }
-  75% {
-    clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
-  }
-  100% {
-    clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
-  }
-}
-@keyframes l20-2 {
-  0% {
-    transform: scaleY(1) rotate(0deg);
-  }
-  49.99% {
-    transform: scaleY(1) rotate(135deg);
-  }
-  50% {
-    transform: scaleY(-1) rotate(0deg);
-  }
-  100% {
-    transform: scaleY(-1) rotate(-135deg);
-  }
-}
-
-[data-oanna-loading] {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.02);
-  cursor: not-allowed;
-}
-[data-oanna-loading] > *:not([data-oanna-loader]) {
-  opacity: 0;
-  visibility: hidden;
-}
-[data-oanna-loading] [data-oanna-loader] {
-  opacity: 1;
-  visibility: visible;
-}
-
-[data-oanna-menu-loading] {
-  cursor: not-allowed;
-}
-[data-oanna-menu-loading] [data-oanna-menu-loader] {
-  opacity: 1;
-  visibility: visible;
-}
-
-[data-oanna-button-group] {
-  width: fit-content;
-  height: auto;
-  display: flex;
-  gap: 0;
-}
-[data-oanna-button-group] > :first-child:not([data-oanna-button-group] > :first-child:has([data-oanna-button])), [data-oanna-button-group] > :first-child:has([data-oanna-button]) [data-oanna-button] {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right: 2px solid rgba(0, 0, 0, 0.05) !important;
-}
-[data-oanna-button-group] > :not(:first-child, :last-child):not([data-oanna-button-group] > :not(:first-child, :last-child):has([data-oanna-button])), [data-oanna-button-group] > :not(:first-child, :last-child):has([data-oanna-button]) [data-oanna-button] {
-  border-radius: 0;
-  border-right: 2px solid rgba(0, 0, 0, 0.05) !important;
-}
-[data-oanna-button-group] > :last-child:not([data-oanna-button-group] > :last-child:has([data-oanna-button])), [data-oanna-button-group] > :last-child:has([data-oanna-button]) [data-oanna-button] {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.hidden {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
 }
 
 /*# sourceMappingURL=oanna.css.map */

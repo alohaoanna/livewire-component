@@ -18,6 +18,9 @@
     if (! $attributes->has('name')) {
         $attributes->offsetSet("name", $target);
     }
+
+    $core = config('oanna.editor.ckeditor.enable') ? 'ckeditor' : 'quill';
+
 @endphp
 
 <div class="form-group form-group--textarea {{ $containerClass }}">
@@ -30,9 +33,9 @@
         </label>
     @endif
 
-    <textarea {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror">
-
-    </textarea>
+        <div wire:ignore class="wysiwyg-editor">
+            <div wire:wysiwyg="{{ $target }}" {{ $attributes }} data-core="{{ $core }}" data-license-key="{{ config('oanna.editor.ckeditor.license_key') }}"></div>
+        </div>
 
     <oanna:form.error :name="$target" />
 </div>
