@@ -175,75 +175,75 @@
   height: 1.618rem;
 }
 [data-oanna-badge][data-color=zinc] {
-  background-color: rgba(159, 159, 169, 0.5);
+  background-color: rgba(159, 159, 169, 0.2);
   color: #9F9FA9;
 }
 [data-oanna-badge][data-color=red] {
-  background-color: rgba(255, 100, 103, 0.5);
+  background-color: rgba(255, 100, 103, 0.2);
   color: #FF6467;
 }
 [data-oanna-badge][data-color=orange] {
-  background-color: rgba(255, 137, 4, 0.5);
+  background-color: rgba(255, 137, 4, 0.2);
   color: #FF8904;
 }
 [data-oanna-badge][data-color=amber] {
-  background-color: rgba(255, 185, 0, 0.5);
+  background-color: rgba(255, 185, 0, 0.2);
   color: #FFB900;
 }
 [data-oanna-badge][data-color=yellow] {
-  background-color: rgba(253, 199, 0, 0.5);
+  background-color: rgba(253, 199, 0, 0.2);
   color: #FDC700;
 }
 [data-oanna-badge][data-color=lime] {
-  background-color: rgba(154, 230, 0, 0.5);
+  background-color: rgba(154, 230, 0, 0.2);
   color: #9AE600;
 }
 [data-oanna-badge][data-color=green] {
-  background-color: rgba(5, 223, 114, 0.5);
+  background-color: rgba(5, 223, 114, 0.2);
   color: #05DF72;
 }
 [data-oanna-badge][data-color=emerald] {
-  background-color: rgba(0, 212, 146, 0.5);
+  background-color: rgba(0, 212, 146, 0.2);
   color: #00D492;
 }
 [data-oanna-badge][data-color=teal] {
-  background-color: rgba(0, 213, 190, 0.5);
+  background-color: rgba(0, 213, 190, 0.2);
   color: #00D5BE;
 }
 [data-oanna-badge][data-color=cyan] {
-  background-color: rgba(0, 211, 242, 0.5);
+  background-color: rgba(0, 211, 242, 0.2);
   color: #00D3F2;
 }
 [data-oanna-badge][data-color=sky] {
-  background-color: rgba(0, 188, 255, 0.5);
+  background-color: rgba(0, 188, 255, 0.2);
   color: #00BCFF;
 }
 [data-oanna-badge][data-color=blue] {
-  background-color: rgba(81, 162, 255, 0.5);
+  background-color: rgba(81, 162, 255, 0.2);
   color: #51A2FF;
 }
 [data-oanna-badge][data-color=indigo] {
-  background-color: rgba(124, 134, 255, 0.5);
+  background-color: rgba(124, 134, 255, 0.2);
   color: #7C86FF;
 }
 [data-oanna-badge][data-color=violet] {
-  background-color: rgba(166, 132, 255, 0.5);
+  background-color: rgba(166, 132, 255, 0.2);
   color: #A684FF;
 }
 [data-oanna-badge][data-color=purple] {
-  background-color: rgba(194, 122, 255, 0.5);
+  background-color: rgba(194, 122, 255, 0.2);
   color: #C27AFF;
 }
 [data-oanna-badge][data-color=fuchsia] {
-  background-color: rgba(237, 106, 255, 0.5);
+  background-color: rgba(237, 106, 255, 0.2);
   color: #ED6AFF;
 }
 [data-oanna-badge][data-color=pink] {
-  background-color: rgba(251, 100, 182, 0.5);
+  background-color: rgba(251, 100, 182, 0.2);
   color: #FB64B6;
 }
 [data-oanna-badge][data-color=rose] {
-  background-color: rgba(255, 99, 126, 0.5);
+  background-color: rgba(255, 99, 126, 0.2);
   color: #FF637E;
 }
 [data-oanna-badge][data-variant=solid][data-color=zinc] {
@@ -549,7 +549,7 @@
 [data-oanna-button][data-button-variant=danger] {
   background-color: #FF6467;
   border-color: #FF6467;
-  color: #121212;
+  color: rgb(255, 255, 255);
 }
 [data-oanna-button][data-button-variant=danger]:hover {
   background-color: rgb(255, 74.5, 77.9935483871);
@@ -559,7 +559,7 @@
   background-color: rgba(255, 100, 103, 0.5);
 }
 [data-oanna-button][data-button-variant=danger]:disabled > svg {
-  fill: rgba(18, 18, 18, 0.5);
+  fill: rgba(255, 255, 255, 0.5);
 }
 [data-oanna-button][data-button-variant=loader] {
   min-width: 70px;
@@ -1086,7 +1086,7 @@ dialog::backdrop {
  * -----------------------------------*/
 [data-oanna-separator] {
   print-color-adjust: exact;
-  background-color: #27272A;
+  background-color: #ededed;
   width: 100%;
   height: 1px;
 }
