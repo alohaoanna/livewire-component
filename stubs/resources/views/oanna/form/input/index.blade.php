@@ -14,6 +14,8 @@
     "label" => null,
     'icon' => null,
     'showable' => null,
+    "badge" => null,
+    'dirty' => null,
 ])
 
 @php
@@ -33,9 +35,12 @@
 
 <div class="form-group {{ $containerClass }}" @if($showable) x-data="{ type: @js($type) }" @endif>
     @if (! is_null($label))
-        <label for="{{ $attributes->get('id') }}">
-            {{ $label }} @if ($required)<sup>*</sup>@endif
-        </label>
+        <oanna:form.label :for="$attributes->get('id')"
+                          :$required :$badge :$dirty :$target
+                          :badgeVariant="$attributes->get('badge:variant')"
+                          :badgeColor="$attributes->get('badge:color')">
+            {{ $label }}
+        </oanna:form.label>
     @endif
 
     <div data-input-container>

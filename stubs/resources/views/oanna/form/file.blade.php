@@ -3,6 +3,8 @@
 @props([
     "class" => "",
     "label" => null,
+    "badge" => null,
+    'dirty' => null,
 ])
 
 @php
@@ -20,9 +22,12 @@
 
 <div class="form-group form-group--file {{ $containerClass }}">
     @if (! is_null($label))
-        <label for="{{ $attributes->get('id') }}">
-            {{ $label }} @if ($required)<sup>*</sup>@endif
-        </label>
+        <oanna:form.label :for="$attributes->get('id')"
+                          :$required :$badge :$dirty :$target
+                          :badgeVariant="$attributes->get('badge:variant')"
+                          :badgeColor="$attributes->get('badge:color')">
+            {{ $label }}
+        </oanna:form.label>
     @endif
 
     <input type="file" {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
