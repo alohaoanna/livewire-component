@@ -1,4 +1,5 @@
 @php $containerClass = $containerClass ??= $attributes->get('container:class') @endphp
+@php $searchPlaceholder = $searchPlaceholder ??= $attributes->get('search:placeholder') @endphp
 
 @props([
     "class" => "",
@@ -25,9 +26,7 @@
 @endphp
 
 <div class="form-group form-group--select {{ $containerClass }}"
-     data-livewire-id="{{ $id }}"
-     @if ($variant == "listbox" || $searchable || $multiple) wire:select @endif
-     @if($variant == "listbox") data-oanna-select data-target="{{ $target }}" @endif
+     @if ($variant == "listbox" || $searchable || $multiple) wire:select="{{ $target }}" @endif
      @if($searchable) data-oanna-select-searchable @endif
      @if($multiple) data-oanna-select-multiple @endif>
     @if (! is_null($label))
@@ -45,7 +44,7 @@
             @endif
         </oanna-select>
 
-        <oanna-options data-oanna-select-options popover="manual" wire:ignore>
+        <oanna-options data-oanna-select-options popover="manual" wire:ignore.self>
             @if ($searchable)
                 @if (isset($search))
                     {{ $search }}
@@ -53,7 +52,7 @@
                     <oanna:form.select.search>
                         <oanna:icon icon="magnifying-glass" variant="regular" size="s" />
 
-                        Search...
+                        {{ $searchPlaceholder ?? 'Search...' }}
                     </oanna:form.select.search>
                 @endif
 
