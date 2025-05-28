@@ -3,7 +3,7 @@
 @props([
     "class" => "",
     "label" => null,
-    'dirty' => null,
+    "value" => null,
 ])
 
 @php
@@ -17,14 +17,24 @@
     if (! $attributes->has('name')) {
         $attributes->offsetSet("name", $target);
     }
+
+    $value = $value ??= $this->{$target};
 @endphp
 
-<div class="form-group form-group--radio {{ $containerClass }}">
-    <input type="radio" {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
-
+<div class="form-group {{ $containerClass }}" wire:date-picker>
     @if (! is_null($label))
         <oanna:form.label {{ $attributes }}>{{$label}}</oanna:form.label>
     @endif
+
+    <div data-input-container>
+        <input type="date" {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
+
+        <oanna:icon icon="calendar" variant="regular" data-oanna-icon-trailing />
+    </div>
+
+    <div data-oanna-date-picker-calendar popover="manual" wire:ignore.self>
+        <x-calendar :$value {{ $attributes }} />
+    </div>
 
     <oanna:form.error :name="$target" />
 </div>

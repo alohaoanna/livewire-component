@@ -1,5 +1,8 @@
+@php $badgeVariant = $badgeVariant ??= $attributes->get('badge:variant') @endphp
+@php $badgeColor = $badgeColor ??= $attributes->get('badge:color') @endphp
+
 @props([
-    'target' => null,
+    'id' => null,
     'badge' => null,
     'badgeVariant' => null,
     'badgeColor' => null,
@@ -7,7 +10,7 @@
     'dirty' => null,
 ])
 
-<label {{ $attributes }}>
+<label for="{{ $id }}">
     {{ $slot }} @if ($required)<sup>*</sup>@endif
 
     @if($dirty)

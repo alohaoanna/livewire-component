@@ -3,7 +3,6 @@
 @props([
     "class" => "",
     "label" => null,
-    "badge" => null,
     'dirty' => null,
 ])
 
@@ -22,12 +21,7 @@
 
 <div class="form-group form-group--textarea {{ $containerClass }}">
     @if (! is_null($label))
-        <oanna:form.label :for="$attributes->get('id')"
-                          :$required :$badge :$dirty :$target
-                          :badgeVariant="$attributes->get('badge:variant')"
-                          :badgeColor="$attributes->get('badge:color')">
-            {{ $label }}
-        </oanna:form.label>
+        <oanna:form.label {{ $attributes }}>{{$label}}</oanna:form.label>
     @endif
 
     <textarea {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror">

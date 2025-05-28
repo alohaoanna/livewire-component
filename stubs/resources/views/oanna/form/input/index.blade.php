@@ -14,8 +14,9 @@
     "label" => null,
     'icon' => null,
     'showable' => null,
-    "badge" => null,
     'dirty' => null,
+    'prefix' => null,
+    'suffix' => null,
 ])
 
 @php
@@ -35,29 +36,38 @@
 
 <div class="form-group {{ $containerClass }}" @if($showable) x-data="{ type: @js($type) }" @endif>
     @if (! is_null($label))
-        <oanna:form.label :for="$attributes->get('id')"
-                          :$required :$badge :$dirty :$target
-                          :badgeVariant="$attributes->get('badge:variant')"
-                          :badgeColor="$attributes->get('badge:color')">
-            {{ $label }}
-        </oanna:form.label>
+        <oanna:form.label {{ $attributes }}>{{$label}}</oanna:form.label>
     @endif
 
     <div data-input-container>
-        @if (is_string($iconLeading) && $iconLeading !== '')
-            <oanna:icon :icon="$iconLeading" :variant="$iconVariant" :size="$iconSize" data-oanna-icon-leading />
-        @else
-            {{ $iconLeading }}
+        @if($prefix)
+            <oanna-prefix data-oanna-input-prefix>
+                {{ $prefix }}
+            </oanna-prefix>
         @endif
 
-        <input @if($showable)x-bind:type="type" @else type="{{ $type }}" @endif {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
+        <div data-input-container>
+            @if (is_string($iconLeading) && $iconLeading !== '')
+                <oanna:icon :icon="$iconLeading" :variant="$iconVariant" :size="$iconSize" data-oanna-icon-leading />
+            @else
+                {{ $iconLeading }}
+            @endif
 
-        @if ($showable)
-            <oanna:icon icon="eye" size="xs" x-on:click="type == 'password' ? type = 'text' : type = 'password'" data-oanna-icon-trailing />
-        @elseif (is_string($iconTrailing) && $iconTrailing !== '')
-            <oanna:icon :icon="$iconTrailing" :variant="$iconVariant" :size="$iconSize" data-oanna-icon-trailing />
-        @elseif ($iconTrailing)
-            {{ $iconTrailing }}
+            <input @if($showable)x-bind:type="type" @else type="{{ $type }}" @endif {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
+
+            @if ($showable)
+                <oanna:icon icon="eye" size="xs" x-on:click="type == 'password' ? type = 'text' : type = 'password'" data-oanna-icon-trailing />
+            @elseif (is_string($iconTrailing) && $iconTrailing !== '')
+                <oanna:icon :icon="$iconTrailing" :variant="$iconVariant" :size="$iconSize" data-oanna-icon-trailing />
+            @elseif ($iconTrailing)
+                {{ $iconTrailing }}
+            @endif
+        </div>
+
+        @if($suffix)
+            <oanna-suffix data-oanna-input-suffix>
+                {{ $suffix }}
+            </oanna-suffix>
         @endif
     </div>
 

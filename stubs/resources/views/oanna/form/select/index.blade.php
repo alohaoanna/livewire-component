@@ -21,8 +21,6 @@
     if (! $attributes->has('name')) {
         $attributes->offsetSet("name", $target);
     }
-
-    $id = $this->getId();
 @endphp
 
 <div class="form-group form-group--select {{ $containerClass }}"
@@ -30,9 +28,7 @@
      @if($searchable) data-oanna-select-searchable @endif
      @if($multiple) data-oanna-select-multiple @endif>
     @if (! is_null($label))
-        <label for="{{ $attributes->get('id') }}">
-            {{ $label }} @if ($required)<sup>*</sup>@endif
-        </label>
+        <oanna:form.label {{ $attributes }}>{{$label}}</oanna:form.label>
     @endif
 
     @if ($variant == "listbox" || $searchable || $multiple)

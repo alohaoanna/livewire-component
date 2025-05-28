@@ -102,11 +102,11 @@
 [data-oanna-button-group] > :first-child:not([data-oanna-button-group] > :first-child:has([data-oanna-button])), [data-oanna-button-group] > :first-child:has([data-oanna-button]) [data-oanna-button] {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-right: 2px solid rgba(0, 0, 0, 0.05) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 [data-oanna-button-group] > :not(:first-child, :last-child):not([data-oanna-button-group] > :not(:first-child, :last-child):has([data-oanna-button])), [data-oanna-button-group] > :not(:first-child, :last-child):has([data-oanna-button]) [data-oanna-button] {
   border-radius: 0;
-  border-right: 2px solid rgba(0, 0, 0, 0.05) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 [data-oanna-button-group] > :last-child:not([data-oanna-button-group] > :last-child:has([data-oanna-button])), [data-oanna-button-group] > :last-child:has([data-oanna-button]) [data-oanna-button] {
   border-top-left-radius: 0;
@@ -574,7 +574,7 @@
   all: unset;
   display: revert;
   height: auto;
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: scroll;
 }
 [data-oanna-menu]:focus {
@@ -700,7 +700,6 @@
   background: none;
   max-width: 100%;
   width: 100%;
-  min-width: 300px;
   appearance: none;
   background-color: #f8f8f8;
   border: 1px solid #ededed;
@@ -787,10 +786,18 @@
 .form-group input[type=radio]:after {
   border-radius: 50%;
 }
+.form-group input[type=date]::-webkit-inner-spin-button,
+.form-group input[type=date]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
 .form-group [data-input-container] {
   position: relative;
   width: 100%;
   height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 .form-group [data-input-container] i,
 .form-group [data-input-container] svg {
@@ -818,24 +825,18 @@
 .form-group [data-input-container]:has([data-oanna-select-button]) svg {
   right: 0.75rem;
 }
-.form-group [data-input-group] {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.form-group [data-input-group]:has([data-oanna-input-prefix]) [data-oanna-select-button], .form-group [data-input-group]:has([data-oanna-input-prefix]) input:not(input[type=checkbox], input[type=radio]), .form-group [data-input-group]:has([data-oanna-input-prefix]) select, .form-group [data-input-group]:has([data-oanna-input-prefix]) textarea {
+.form-group [data-input-container]:has([data-oanna-input-prefix]) [data-oanna-select-button], .form-group [data-input-container]:has([data-oanna-input-prefix]) input:not(input[type=checkbox], input[type=radio]), .form-group [data-input-container]:has([data-oanna-input-prefix]) select, .form-group [data-input-container]:has([data-oanna-input-prefix]) textarea {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left: none;
 }
-.form-group [data-input-group]:has([data-oanna-input-suffix]) [data-oanna-select-button], .form-group [data-input-group]:has([data-oanna-input-suffix]) input:not(input[type=checkbox], input[type=radio]), .form-group [data-input-group]:has([data-oanna-input-suffix]) select, .form-group [data-input-group]:has([data-oanna-input-suffix]) textarea {
+.form-group [data-input-container]:has([data-oanna-input-suffix]) [data-oanna-select-button], .form-group [data-input-container]:has([data-oanna-input-suffix]) input:not(input[type=checkbox], input[type=radio]), .form-group [data-input-container]:has([data-oanna-input-suffix]) select, .form-group [data-input-container]:has([data-oanna-input-suffix]) textarea {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right: none;
 }
-.form-group [data-input-group] [data-oanna-input-prefix],
-.form-group [data-input-group] [data-oanna-input-suffix] {
+.form-group [data-input-container] [data-oanna-input-prefix],
+.form-group [data-input-container] [data-oanna-input-suffix] {
   width: fit-content;
   padding: 0.5rem 0.75rem;
   min-height: 100%;
@@ -844,11 +845,11 @@
   background-color: rgb(232.7, 232.7, 232.7);
   border: 1px solid rgb(221.7, 221.7, 221.7);
 }
-.form-group [data-input-group] [data-oanna-input-prefix] {
+.form-group [data-input-container] [data-oanna-input-prefix] {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.form-group [data-input-group] [data-oanna-input-suffix] {
+.form-group [data-input-container] [data-oanna-input-suffix] {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -1165,21 +1166,17 @@ dialog::backdrop {
  * TOOLTIP
  * -----------------------------------*/
 [data-oanna-tooltip] [data-oanna-tooltip-content] {
-  padding: 5px;
+  padding: 0.25rem 0.5rem;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
+  border-radius: 6px;
   border: 1px solid #ededed;
-  transition: all 0.2s;
-  opacity: 0;
-  transform: scale(0.98);
+}
+[data-oanna-tooltip] [data-oanna-tooltip-content] * {
+  color: #121212;
+  fill: #121212;
 }
 [data-oanna-tooltip] [data-oanna-tooltip-content][open] {
   display: block;
-}
-[data-oanna-tooltip] [data-oanna-tooltip-content][data-open] {
-  opacity: 1;
-  transform: scale(1);
 }
 
 /* -------------------------------------

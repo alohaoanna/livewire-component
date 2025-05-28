@@ -3,7 +3,6 @@
 @props([
     "class" => "",
     "label" => null,
-    "badge" => null,
     'dirty' => null,
 ])
 
@@ -27,12 +26,7 @@
         <input type="checkbox" {{ $attributes }} class="{{ $attributes->get('class') }} @error($target)is-invalid @enderror" />
 
         @if (! is_null($label))
-            <oanna:form.label :for="$attributes->get('id')"
-                              :$required :$badge :$dirty :$target
-                              :badgeVariant="$attributes->get('badge:variant')"
-                              :badgeColor="$attributes->get('badge:color')">
-                {{ $label }}
-            </oanna:form.label>
+            <oanna:form.label {{ $attributes }}>{{$label}}</oanna:form.label>
         @endif
 
         <oanna:form.error :name="$target" />
