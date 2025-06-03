@@ -4,6 +4,7 @@ namespace OANNA;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -41,7 +42,10 @@ class OANNAServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package->name('livewire-component')
-            ->hasConfigFile('oanna');
+            ->hasConfigFile('oanna')
+            ->hasInstallCommand(function(InstallCommand $command) {
+                $command->publishConfigFile();
+            });
     }
 
     public function bootComponentPath()

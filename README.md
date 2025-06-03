@@ -5,7 +5,7 @@ composer require oanna/livewire-component
 ```
 
 ```bash
-php artisan vendor:publish --tag="livewire-component-config"
+php artisan livewire-component:install
 ```
 
 Ajouter les scripts est les assets à vos templates. 
@@ -17,15 +17,15 @@ Ajouter les scripts est les assets à vos templates.
 </head>
 <body>
     ...
-    @livewireScripts <!-- IMPORTANT !! PLACE LIVEWIRE SCRIPTS BEFORE. IT WON'T WORK ELSE -->
     @oannaScripts
     ...
 </body>
 ```
 
-Importez les styles dans votre css/scss si nécessaire.
+Importez les styles dans votre css/scss si nécessaire. (recommander)
 ```css
-@import "../../vendor/oanna/livewire-component/dist/oanna.min.css";
+@import "../../vendor/oanna/livewire-component/dist/oanna.css";  
+/*@import "../../vendor/oanna/livewire-component/dist/oanna.min.css"; FICHIER ALTERNATIVE */
 ```
 
 ## Changelog
