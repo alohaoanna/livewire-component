@@ -16,6 +16,11 @@
     $attributes->offsetSet('data-color', $color);
     $attributes->offsetSet('data-size', $size);
     $attributes->offsetSet('data-variant', $variant);
+
+    if ($color == 'auto') {
+        $colors = config('oanna.colors');
+        $color = $colors[rand(0, (count($colors) - 1))];
+    }
 @endphp
 
 <oanna:button-or-div :$attributes data-oanna-badge>

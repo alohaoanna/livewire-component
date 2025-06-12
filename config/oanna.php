@@ -81,4 +81,36 @@ return [
         ],
 
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Colors
+    |--------------------------------------------------------------------------
+    |
+    | Here are the list of colors available in some components for exemple badge, avatar...
+    | This array is used in the components for the "auto" value.
+    | You can remove somes if you want to prevent the auto value to take them but can't add somes.
+    |
+    */
+
+    'colors' => [
+        'zinc',
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+    ],
 ];

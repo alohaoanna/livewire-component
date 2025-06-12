@@ -4,6 +4,7 @@
     "class" => "",
     "label" => null,
     "value" => null,
+    "range" => null
 ])
 
 @php
@@ -33,7 +34,11 @@
     </div>
 
     <div data-oanna-date-picker-calendar popover="manual" wire:ignore.self>
-        <x-calendar :$value {{ $attributes }} />
+        <oanna:calendar :$value {{ $attributes }} />
+
+        @if ($range)
+            <oanna:calendar :$value {{ $attributes }} />
+        @endif
     </div>
 
     <oanna:form.error :name="$target" />

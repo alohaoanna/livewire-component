@@ -1,84 +1,200 @@
 @props([
     'value' => null,
+    'shortcut' => null,
+    'action' => true,
 ])
 
 @php
     $target = $attributes->whereStartsWith('wire:model')->first();
+    $value = $value ??= $this->{$target} ??= now();
 
-    if ($target) {
-        $attributes->offsetSet('wire:calendar', $target);
+    if ($value instanceof \Carbon\Carbon) {
+        $value = $value->format('Y-m-d');
     }
-
-    if (!empty($value)) {
-        if (! $value instanceof \Carbon\Carbon) {
-            /** @var \Carbon\Carbon $value */
-            $value = \Carbon\Carbon::parse($value);
-        }
-    }
-    else {
-        /** @var \Carbon\Carbon $value */
-        $value = now();
-    }
-
-    $weeks = [];
-    $date = $value->copy()->startOfWeek();
-    for ($i = 0; $i < 7; $i++) {
-        $weeks[] = $date->translatedFormat('D');
-        $date->addDay();
-    }
-
-    $calendar = [];
-    $date = $value->copy();
-    $date->startOfMonth();
-    $previous = $date->copy();
-    $previous->subMonth();
-
-    if (! $date->isStartOfWeek()) {
-        $date = $date->copy()->startOfWeek();
-    }
-
-    $i = 1;
-    do {
-        for ($y = 0; $y < 7; $y++) {
-            $copy = $date->copy();
-            $calendar[$i][$copy->day] = $copy;
-            $date = $date->addDay();
-        }
-        $i = $i + 1;
-    }
-    while ($date->month == $value->month || $date->month == $previous->month);
 @endphp
 
-<div wire:calendar="{{ $target }}" {{ $attributes }} data-oanna-calendar>
+<div {{ $attributes }} data-oanna-calendar x-data="calendar(@js($value))">
     <div data-oanna-calendar-heading>
-        <p data-oanna-calendar-heading-current>
-            {{ $value->translatedFormat('F Y') }}
-        </p>
+        <p data-oanna-calendar-heading-current x-text="formatView"></p>
 
         <div data-oanna-calendar-heading-actions>
-            <oanna:button data-oanna-calendar-previous square variant="ghost">
-                <oanna:icon icon="chevron-left" />
-            </oanna:button>
+            @if ($shortcut == 'now')
+                <oanna:button square variant="ghost" x-on:click="showNow">
+                    <oanna:icon icon="calendar" />
+                </oanna:button>
+            @endif
 
-            <oanna:button data-oanna-calendar-next square variant="ghost">
-                <oanna:icon icon="chevron-right" />
-            </oanna:button>
+            @if ($action)
+                <oanna:button data-oanna-calendar-previous square variant="ghost" x-on:click="previousMonth">
+                    <oanna:icon icon="chevron-left" />
+                </oanna:button>
+
+                <oanna:button data-oanna-calendar-next square variant="ghost" x-on:click="nextMonth">
+                    <oanna:icon icon="chevron-right" />
+                </oanna:button>
+            @endif
         </div>
     </div>
 
     <div data-oanna-calendar-container>
-        @foreach($weeks as $week)
-            <div data-oanna-calendar-cell>
-                {{ $week }}
-            </div>
-        @endforeach
+        <template x-for="day in weeks">
+            <div data-oanna-calendar-cell x-text="day"></div>
+        </template>
 
-        @foreach($calendar as $week)
-            @foreach($week as $day => $v)
-                <div data-oanna-calendar-cell data-value="{{ $v->format('Y-m-d') }}" class="@if($value->format('d-m-Y') == $v->format('d-m-Y')) current @endif @if($v->format('d-m-Y') == now()->format('d-m-Y')) now @endif">
-                    {{ $day }}
-                </div>
-            @endforeach
-        @endforeach
+        <template x-for="week in calendar">
+            <div data-oanna-calendar-container-row>
+                <template x-for="day in week">
+                    <div data-oanna-calendar-cell x-bind:class="day.class" x-text="day.text" x-on:click="setValue(day.date)"></div>
+                </template>
+            </div>
+        </template>
     </div>
+
+    @script
+    <script>
+        Date.prototype.addDays = function(days) {
+            var date = new Date(this.valueOf());
+            return new Date(date.setDate(date.getDate() + days));
+        }
+
+        Date.prototype.addMonths = function(months) {
+            var date = new Date(this.valueOf());
+            return new Date(date.setMonth(date.getMonth() + months));
+        }
+
+        Date.prototype.subMonths = function(months) {
+            var date = new Date(this.valueOf());
+            return new Date(date.setMonth(date.getMonth() - months));
+        }
+
+        Date.prototype.getRealMonth = function() {
+            var date = new Date(this.valueOf());
+            return date.getMonth() + 1;
+        }
+
+        Date.prototype.getStringMonth = function () {
+            var date = new Date(this.valueOf());
+            if (date.getRealMonth() >= 10) return date.getRealMonth();
+            return "0" + date.getRealMonth();
+        };
+
+        Date.prototype.getStringDate = function () {
+            var date = new Date(this.valueOf());
+            if (date.getDate() >= 10) return date.getDate();
+            return "0" + date.getDate();
+        };
+
+        Date.prototype.startOfMonth = function() {
+            var date = new Date(this.valueOf());
+            return new Date(date.getFullYear(), date.getMonth(), 1);
+        }
+
+        Date.prototype.startOfWeek = function() {
+            var date = new Date(this.valueOf());
+
+            var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+
+            return new Date(date.setDate(diff));
+        }
+
+        Date.prototype.equal = function(date) {
+            return this.getFullYear() === date.getFullYear() && this.getMonth() === date.getMonth() && this.getDate() === date.getDate();
+        }
+
+        Alpine.data('calendar', (initialOpenState = null) => ({
+            value: new Date(initialOpenState),
+            view: new Date(initialOpenState),
+            now: new Date(),
+            weeks: [],
+            calendar: [],
+            days: ["mon", "tue", "wen", "fri", "tur", "sat", "sun"],
+            months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+
+            init() {
+                this.value.setHours(0, 0, 0, 0);
+                this.view.setHours(0, 0, 0, 0);
+                this.now.setHours(0, 0, 0, 0);
+
+                this.initWeeks();
+                this.initCalendar();
+            },
+
+            initWeeks() {
+                for (var day in this.days) {
+                    this.weeks.push(this.days[day]);
+                }
+            },
+
+            initCalendar() {
+                this.calendar = [];
+                var previousMonth = this.view.getMonth();
+                var i = 0;
+                var date = this.view.startOfMonth().startOfWeek();
+                do {
+                    var week = [];
+                    for (var day in this.days) {
+                        week.push({
+                            value: this.format(date),
+                            text: date.getDate(),
+                            date: date,
+                            class: this.getClass(date),
+                        });
+                        date = date.addDays(1);
+                    }
+                    this.calendar.push(week);
+                    i++;
+                }
+                while (i < 6);
+            },
+
+            getClass(v) {
+                let str = "";
+                v.setHours(0, 0, 0, 0);
+
+                if (this.value.equal(v)) {
+                    str += " value";
+                }
+                else if (v.getRealMonth() === this.view.getRealMonth()) {
+                    str += " view";
+                }
+
+                if (this.now.equal(v)) {
+                    str += " now";
+                }
+
+                return str;
+            },
+
+            showNow() {
+                this.view = this.now;
+                this.initCalendar();
+            },
+
+            previousMonth() {
+                this.view = this.view.subMonths(1);
+                this.initCalendar();
+            },
+
+            nextMonth() {
+                this.view = this.view.addMonths(1);
+                this.initCalendar();
+            },
+
+            formatView() {
+                return this.months[this.view.getMonth()] + ' ' + this.view.getFullYear();
+            },
+
+            format(date) {
+                return date.getFullYear() + '-' + date.getStringMonth() + '-' + date.getStringDate();
+            },
+
+            setValue(date) {
+                var target = @js($target);
+                this.value = this.view = date;
+                $wire.$set(target, this.format(this.value));
+                this.initCalendar();
+            },
+        }));
+    </script>
+    @endscript
 </div>
