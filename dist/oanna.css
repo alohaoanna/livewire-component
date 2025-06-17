@@ -396,9 +396,10 @@
   text-align: center;
   white-space: nowrap;
 }
-[data-oanna-button] > [data-oanna-icon] {
-  color: rgb(255, 255, 255) !important;
-  fill: rgb(255, 255, 255) !important;
+[data-oanna-button] > i[data-oanna-icon],
+[data-oanna-button] > svg[data-oanna-icon] {
+  color: inherit;
+  fill: rgb(255, 255, 255);
 }
 [data-oanna-button] span {
   color: inherit;
@@ -408,8 +409,9 @@
   border-color: #51A2FF;
   color: rgb(255, 255, 255);
 }
-[data-oanna-button][data-button-variant=primary] > svg {
+[data-oanna-button][data-button-variant=primary] > [data-oanna-icon] {
   fill: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 [data-oanna-button][data-button-variant=primary]:hover {
   background-color: rgb(65.7, 153.8224137931, 255);
@@ -421,16 +423,18 @@
   border-color: rgba(81, 162, 255, 0.3);
   color: rgba(255, 255, 255, 0.3);
 }
-[data-oanna-button][data-button-variant=primary]:disabled > svg, [data-oanna-button][data-button-variant=primary][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=primary]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=primary][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3);
 }
 [data-oanna-button][data-button-variant=dark] {
   background-color: #121212;
   border-color: #121212;
   color: rgb(255, 255, 255);
 }
-[data-oanna-button][data-button-variant=dark] > svg {
+[data-oanna-button][data-button-variant=dark] > [data-oanna-icon] {
   fill: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 [data-oanna-button][data-button-variant=dark]:hover {
   background-color: rgb(0, 0, 0);
@@ -442,16 +446,18 @@
   border-color: rgba(18, 18, 18, 0.3);
   color: rgba(255, 255, 255, 0.3);
 }
-[data-oanna-button][data-button-variant=dark]:disabled > svg, [data-oanna-button][data-button-variant=dark][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=dark]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=dark][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3);
 }
 [data-oanna-button][data-button-variant=outline] {
   background-color: transparent;
   border-color: #ededed;
   color: #121212;
 }
-[data-oanna-button][data-button-variant=outline] > svg {
+[data-oanna-button][data-button-variant=outline] > [data-oanna-icon] {
   fill: #121212;
+  color: #121212;
 }
 [data-oanna-button][data-button-variant=outline]:hover {
   background-color: rgb(229.35, 229.35, 229.35);
@@ -460,16 +466,18 @@
   border-color: rgba(237, 237, 237, 0.3);
   color: rgba(18, 18, 18, 0.3);
 }
-[data-oanna-button][data-button-variant=outline]:disabled > svg, [data-oanna-button][data-button-variant=outline][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=outline]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=outline][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(18, 18, 18, 0.3);
+  color: rgba(18, 18, 18, 0.3);
 }
 [data-oanna-button][data-button-variant=filled] {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
   color: #121212;
 }
-[data-oanna-button][data-button-variant=filled] > svg {
+[data-oanna-button][data-button-variant=filled] > [data-oanna-icon] {
   fill: #121212;
+  color: #121212;
 }
 [data-oanna-button][data-button-variant=filled]:hover {
   background-color: rgb(240.35, 240.35, 240.35);
@@ -480,16 +488,18 @@
   border-color: rgba(248, 248, 248, 0.3);
   color: #121212;
 }
-[data-oanna-button][data-button-variant=filled]:disabled > svg, [data-oanna-button][data-button-variant=filled][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=filled]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=filled][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(18, 18, 18, 0.3);
+  color: rgba(18, 18, 18, 0.3);
 }
 [data-oanna-button][data-button-variant=ghost] {
   background-color: transparent;
   border-color: transparent;
   color: #121212;
 }
-[data-oanna-button][data-button-variant=ghost] > svg {
+[data-oanna-button][data-button-variant=ghost] > [data-oanna-icon] {
   fill: #121212;
+  color: #121212;
 }
 [data-oanna-button][data-button-variant=ghost]:hover {
   background-color: #f8f8f8;
@@ -500,8 +510,9 @@
   border-color: rgba(248, 248, 248, 0.3);
   color: #121212;
 }
-[data-oanna-button][data-button-variant=ghost]:disabled > svg, [data-oanna-button][data-button-variant=ghost][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=ghost]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=ghost][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(18, 18, 18, 0.3);
+  color: rgba(18, 18, 18, 0.3);
 }
 [data-oanna-button][data-button-variant=icon] {
   background-color: transparent;
@@ -510,15 +521,17 @@
   border-radius: 0;
   color: #121212;
 }
-[data-oanna-button][data-button-variant=icon] > svg {
+[data-oanna-button][data-button-variant=icon] > [data-oanna-icon] {
   fill: #121212;
+  color: #121212;
 }
 [data-oanna-button][data-button-variant=icon]:hover {
   background-color: transparent;
   border-color: transparent;
 }
-[data-oanna-button][data-button-variant=icon]:disabled > svg, [data-oanna-button][data-button-variant=icon][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=icon]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=icon][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(18, 18, 18, 0.3);
+  color: rgba(18, 18, 18, 0.3);
 }
 [data-oanna-button][data-button-variant=line] {
   background-color: transparent;
@@ -540,8 +553,9 @@
 [data-oanna-button][data-button-variant=line]:disabled, [data-oanna-button][data-button-variant=line][data-oanna-loading] {
   color: rgba(81, 162, 255, 0.3);
 }
-[data-oanna-button][data-button-variant=line]:disabled > svg, [data-oanna-button][data-button-variant=line][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=line]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=line][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(81, 162, 255, 0.3);
+  color: rgba(81, 162, 255, 0.3);
 }
 [data-oanna-button][data-button-variant=danger] {
   background-color: #FF6467;
@@ -556,8 +570,9 @@
   background-color: rgba(255, 100, 103, 0.3);
   color: rgba(255, 255, 255, 0.3);
 }
-[data-oanna-button][data-button-variant=danger]:disabled > svg, [data-oanna-button][data-button-variant=danger][data-oanna-loading] > svg {
+[data-oanna-button][data-button-variant=danger]:disabled > [data-oanna-icon], [data-oanna-button][data-button-variant=danger][data-oanna-loading] > [data-oanna-icon] {
   fill: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3);
 }
 [data-oanna-button][data-button-variant=loader] {
   min-width: 70px;

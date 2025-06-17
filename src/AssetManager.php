@@ -21,7 +21,6 @@ class AssetManager
         Blade::directive('oannaScripts', function ($expression) {
             return <<<PHP
             <?php app('livewire')->forceAssetInjection() ?>
-            @livewireScripts
             {!! app('oanna')->scripts($expression) !!}
             PHP;
         });
