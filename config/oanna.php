@@ -113,4 +113,17 @@ return [
         'pink',
         'rose',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | JQuery
+    |--------------------------------------------------------------------------
+    |
+    | This library of component need JQuery to work. For this we set an auto import of JQuery code via cdn in the assets directive.
+    | For preventing too many resources to be import or if you already have jquery installed via another cdn or via npm.
+    | Set this value too false to prevent jquery to be import.
+    |
+    */
+
+    'auto_import_jquery' => true,
 ];

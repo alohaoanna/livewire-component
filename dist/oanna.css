@@ -1304,15 +1304,16 @@ dialog::backdrop {
   max-width: 150px;
 }
 [data-oanna-tooltip] [data-oanna-tooltip-content] {
-  padding: 0.25rem 0.5rem;
-  background-color: #f8f8f8;
+  padding: 8px;
+  background-color: #121212;
   border-radius: 8px;
-  font-size: 0.887rem;
+  font-size: 0.75rem;
   text-align: left;
+  color: rgb(255, 255, 255);
 }
 [data-oanna-tooltip] [data-oanna-tooltip-content] * {
-  color: #121212;
-  fill: #121212;
+  color: rgb(255, 255, 255);
+  fill: rgb(255, 255, 255);
 }
 [data-oanna-tooltip] [data-oanna-tooltip-content][open] {
   display: block;

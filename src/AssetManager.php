@@ -50,6 +50,10 @@ class AssetManager
     {
         $assets = '';
 
+        if (config('oanna.auto_import_jquery')) {
+            $assets .= '<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script><script>window.$ = window.JQuery = $;</script>';
+        }
+
         if (config('oanna.editor.ckeditor.enable')) {
             $assets .= '<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.css" /> <script src="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.umd.js"></script>';
         }
