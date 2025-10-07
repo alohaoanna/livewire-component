@@ -3,6 +3,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Routes prefix
+    |--------------------------------------------------------------------------
+    |
+    | Define the routes prefix of the package
+    |
+    */
+
+    'route_prefix' => 'oanna',
+
+    /*
+    |--------------------------------------------------------------------------
     | Livewire Icons
     |--------------------------------------------------------------------------
     |
@@ -15,24 +26,11 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Fontawesome
-        |--------------------------------------------------------------------------
-        |
-        | This key is used by the icon component. Provide your fontawesome url kit here.
-        | Only set it to true if you already import your kit in your templates
-        |
-        */
-
-        'fontawesome' => null,
-
-        /*
-        |--------------------------------------------------------------------------
         | Sprite
         |--------------------------------------------------------------------------
         |
-        | Sprite is use by default if fontawesome is'nt specified
-        | This key is used by the icon component. If you provide your sprite.svg path here
-        | Icon component will use svg sprite as icon.
+        | Sprite is use by default
+        | This key is used by the icon component. Please provide your sprite file path to set in asset() function
         |
         */
 
@@ -84,46 +82,38 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Colors
+    | Livewire toast
     |--------------------------------------------------------------------------
     |
-    | Here are the list of colors available in some components for exemple badge, avatar...
-    | This array is used in the components for the "auto" value.
-    | You can remove somes if you want to prevent the auto value to take them but can't add somes.
+    | Default configuration for the toast.
     |
     */
 
-    'colors' => [
-        'zinc',
-        'red',
-        'orange',
-        'amber',
-        'yellow',
-        'lime',
-        'green',
-        'emerald',
-        'teal',
-        'cyan',
-        'sky',
-        'blue',
-        'indigo',
-        'violet',
-        'purple',
-        'fuchsia',
-        'pink',
-        'rose',
+    'toast' => [
+
+        /*
+        |--------------------------------------------------------------------------
+        | Duration
+        |--------------------------------------------------------------------------
+        |
+        | Define the default duration of the toast.
+        | You can still provide a custom one when calling a toast in PHP or JS.
+        |
+        */
+
+        'duration' => 3000,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Position
+        |--------------------------------------------------------------------------
+        |
+        | Define the default position of the toast.
+        | You can still provide a custom one when calling a toast in PHP or JS.
+        |
+        */
+
+        'position' => 'bottom right',
+
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | JQuery
-    |--------------------------------------------------------------------------
-    |
-    | This library of component need JQuery to work. For this we set an auto import of JQuery code via cdn in the assets directive.
-    | For preventing too many resources to be import or if you already have jquery installed via another cdn or via npm.
-    | Set this value too false to prevent jquery to be import.
-    |
-    */
-
-    'auto_import_jquery' => true,
 ];

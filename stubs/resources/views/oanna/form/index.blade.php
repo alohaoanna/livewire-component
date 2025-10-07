@@ -1,8 +1,8 @@
-@php
-    $attributes->class('form');
-@endphp
+@props([
+    'class' => "form",
+])
 
-<form {{ $attributes }}>
+<form {{ $attributes }} class="{{ $class }}">
     @csrf
 
     {{ $slot }}

@@ -1,31 +1,18 @@
-@props([
-    'persist' => true,
-])
+@props([])
 
-@if ($persist)
-<div x-persist="toast">
-@endif
-    <oanna-toast data-oanna-toastr popover="manual" data-position="bottom right" data-duration="3000">
-        <div class="container">
-            <div class="content">
-                <div class="icons">
-                    <oanna:icon icon="check" class="icon success" variant="solid" />
-                    <oanna:icon icon="circle-info" class="icon info" variant="solid" />
-                    <oanna:icon icon="triangle-exclamation" class="icon warning" variant="solid" />
-                    <oanna:icon icon="xmark" class="icon error" variant="solid" />
-                </div>
-                <div class="slots">
-                    <h5 class="title"></h5>
-                    <p class="text"></p>
-                </div>
-            </div>
-            <div class="actions">
-                <button data-toastr-close class="close">
-                    <oanna:icon icon="xmark" variant="regular" />
-                </button>
-            </div>
+<div class="toastContainer" popover="manual" data-toast-position="top right" data-toast-variant="default">
+    <div class="toastContainer__toast">
+        <div class="toastContainer__toast__icon">
+            <x-icon name="check" class="success" />
+            <x-icon name="info" class="info" />
+            <x-icon name="caution" class="warning" />
+            <x-icon name="danger" class="error" />
         </div>
-    </oanna-toast>
-@if ($persist)
+
+        <div class="toastContainer__toast__contentContainer">
+            <h5 class="toastContainer__toast__contentContainer__title"></h5>
+
+            <p class="toastContainer__toast__contentContainer__text"></p>
+        </div>
+    </div>
 </div>
-@endif

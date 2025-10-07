@@ -1,23 +1,12 @@
 @props([
-    "name",
-    'variant' => null,
-    'position' => null,
-    "size" => null,
-    "dismissible" => true,
+    'name',
+    'dismissable' => true,
 ])
 
-<oanna-modal data-oanna-modal wire:ignore.self>
-    <dialog wire:modal data-modal="{{ $name }}" data-size="{{ $size }}"
-            @if ($variant) data-variant="{{ $variant }}" @endif
-            @if ($position) data-position="{{ $position }}" @endif
-            data-dismissible="{{ $dismissible ? 'true' : 'false' }}"
-            wire:ignore.self>
-        {!! $slot !!}
+<dialog data-modal="{{ $name }}" popover="manual" class="modal" data-dismissable="{{ $dismissable ? 'true' : 'false' }}">
+    <x-button x-on:click="$oanna.modal('{{ $name }}').close()" class="modal__close" :loading="false">
+        X
+    </x-button>
 
-        <div data-modal-close>
-            <button type="button" x-on:click="$oanna.modal(@js($name)).close()">
-                <oanna:icon icon="xmark" variant="regular" />
-            </button>
-        </div>
-    </dialog>
-</oanna-modal>
+    {{ $slot }}
+</dialog>

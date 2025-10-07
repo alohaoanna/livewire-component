@@ -43,6 +43,7 @@ class OANNAServiceProvider extends PackageServiceProvider
          */
         $package->name('livewire-component')
             ->hasConfigFile('oanna')
+            ->hasRoute('web')
             ->hasInstallCommand(function(InstallCommand $command) {
                 $command->publishConfigFile();
             });

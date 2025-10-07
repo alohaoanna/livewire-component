@@ -1,7 +1,11 @@
 @props([
-    "name",
+    'name',
 ])
 
-<button data-oanna-modal-trigger x-on:click="$oanna.modal('{{$name}}').show()" {{ $attributes }}>
-    {!! $slot !!}
-</button>
+@php
+
+@endphp
+
+<div x-on:click="$oanna.modal('{{$name}}').show()" {{ $attributes }}>
+    {{ $slot }}
+</div>

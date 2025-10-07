@@ -13,7 +13,6 @@ class AssetManager
         $instance = new static;
 
         $instance->registerAssetDirective();
-        $instance->registerAssetRoutes();
     }
 
     public function registerAssetDirective()
@@ -24,17 +23,6 @@ class AssetManager
             {!! app('oanna')->scripts($expression) !!}
             PHP;
         });
-
-        Blade::directive('oannaAssets', function ($expression) {
-            return <<<PHP
-            {!! app('oanna')->assets($expression) !!}
-            PHP;
-        });
-    }
-
-    public function registerAssetRoutes()
-    {
-        Route::get('/oanna/oanna.min.js', [static::class, 'oannaMinJs']);
     }
 
     public function oannaMinJs() {
@@ -43,29 +31,7 @@ class AssetManager
 
     public static function scripts($options = [])
     {
-        return '<script src="/oanna/oanna.min.js"></script>';
-    }
-
-    public static function assets($options = [])
-    {
-        $assets = '';
-
-        if (config('oanna.auto_import_jquery')) {
-            $assets .= '<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script><script>window.$ = window.JQuery = $;</script>';
-        }
-
-        if (config('oanna.editor.ckeditor.enable')) {
-            $assets .= '<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.css" /> <script src="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.umd.js"></script>';
-        }
-        else {
-            $assets .= '<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet"> <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>';
-        }
-
-        if (is_string(config('oanna.icon.fontawesome'))) {
-            $assets .= ' <script src="'.config('oanna.icon.fontawesome').'" crossorigin="anonymous"></script>';
-        }
-
-        return $assets;
+        return '<script src="/'.config('oanna.route_prefix', 'oanna').'/oanna.min.js"></script>';
     }
 
     public function pretendResponseIsFile($file, $contentType = 'application/javascript; charset=utf-8')
