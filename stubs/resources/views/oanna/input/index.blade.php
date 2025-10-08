@@ -26,9 +26,9 @@
 
 <div class="form-group">
 
-    <x-input.label :for="$attributes->get('id')" :content="$label" />
+    <oanna:input.label :for="$attributes->get('id')" :content="$label" />
 
-    <x-input.container
+    <oanna:input.container
         x-data="{ show: false }"
         :prefix="$prefix"
         :suffix="$suffix"
@@ -36,31 +36,31 @@
 
         @if (! empty($icon))
             <x-slot:icon>
-                <x-icon :name="$icon" />
+                <oanna:icon :name="$icon" />
             </x-slot:icon>
         @endif
 
         @if ($type == 'password' && $showable)
-            <input x-bind:type="show ? 'text' : 'password'" {{ $attributes }} />
+            <input x-bind:type="show ? 'text' : 'password'" {{ $attributes }} @if($required) required @endif />
         @else
-            <input type="{{ $type }}" {{ $attributes }} />
+            <input type="{{ $type }}" {{ $attributes }} @if($required) required @endif />
         @endif
 
         @if (! empty($iconTrailing))
             @if ($type == 'password' && $showable)
                 <x-slot:iconTrailing>
-                    <x-icon :name="$iconTrailing" x-on:click="show = !show" />
+                    <oanna:icon :name="$iconTrailing" x-on:click="show = !show" />
                 </x-slot:iconTrailing>
             @else
                 <x-slot:iconTrailing>
-                    <x-icon :name="$iconTrailing" />
+                    <oanna:icon :name="$iconTrailing" />
                 </x-slot:iconTrailing>
             @endif
         @endif
 
-    </x-input.container>
+    </oanna:input.container>
 
-    <x-input.error :name="$target" />
+    <oanna:input.error :name="$target" />
 
 </div>
 

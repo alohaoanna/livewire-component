@@ -3,10 +3,10 @@
 <div class="toastContainer" popover="manual" data-toast-position="top right" data-toast-variant="default">
     <div class="toastContainer__toast">
         <div class="toastContainer__toast__icon">
-            <x-icon name="check" class="success" />
-            <x-icon name="info" class="info" />
-            <x-icon name="caution" class="warning" />
-            <x-icon name="danger" class="error" />
+            <oanna:icon name="check" class="success" />
+            <oanna:icon name="info" class="info" />
+            <oanna:icon name="caution" class="warning" />
+            <oanna:icon name="danger" class="error" />
         </div>
 
         <div class="toastContainer__toast__contentContainer">

@@ -12,7 +12,6 @@
     <a
         {{ $attributes }}
         class="{{ $class }}"
-        @if($loading) wire:loading.attr="" wire:target="{{ $action }}" @endif
     >
         {{ $slot }}
 
