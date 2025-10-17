@@ -16,7 +16,7 @@
         {{ $slot }}
 
         @if ($loading)
-            <span class="button__loader"></span>
+            <oanna:icon.loader />
         @endif
     </a>
 @else
@@ -29,7 +29,7 @@
         {{ $slot }}
 
         @if ($loading)
-            <span class="button__loader"></span>
+            <oanna:icon.loader />
         @endif
     </button>
 @endif

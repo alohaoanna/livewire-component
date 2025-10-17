@@ -5,5 +5,5 @@
 ])
 
 <svg {{ $attributes }} class="{{ $class }}">
-    <use xlink:href="{{ ($path ?? config('oanna.icon.sprite')) . "#" . $name }}"></use>
+    <use xlink:href="{{ ($path ?? asset(config('oanna.icon.sprite'))) . "#" . $name }}"></use>
 </svg>

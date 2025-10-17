@@ -1,7 +1,6 @@
 @php $iconTrailing ??= $attributes->get('icon:trailing') @endphp
 
 @props([
-    'type' => "text",
     'label' => null,
     'required' => false,
     'prefix' => null,
@@ -9,7 +8,6 @@
     'badge' => null,
     'icon' => null,
     'iconTrailing' => null,
-    'showable' => true,
 ])
 
 @php
@@ -18,18 +16,13 @@
     if (! $attributes->has('id')) {
         $attributes->offsetSet('id', $target);
     }
-
-    if ($type == 'password' && $showable) {
-        $iconTrailing = 'eye';
-    }
 @endphp
 
-<div class="form-group form-group--{{ $type }}">
+<div class="form-group form-group--select">
 
     <oanna:input.label :for="$attributes->get('id')" :content="$label" />
 
     <oanna:input.container
-        x-data="{ show: false }"
         :prefix="$prefix"
         :suffix="$suffix"
     >
@@ -40,11 +33,9 @@
             </x-slot:icon>
         @endif
 
-        @if ($type == 'password' && $showable)
-            <input x-bind:type="show ? 'text' : 'password'" {{ $attributes }} @if($required) required @endif />
-        @else
-            <input type="{{ $type }}" {{ $attributes }} @if($required) required @endif />
-        @endif
+        <select {{ $attributes }}>
+            {{ $slot }}
+        </select>
 
         @if (! empty($iconTrailing))
             @if ($type == 'password' && $showable)

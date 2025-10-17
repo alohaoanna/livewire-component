@@ -20,6 +20,11 @@ trait InteractsWithComponents
         });
     }
 
+    public static function modal($name): Modal
+    {
+        return new Modal($name);
+    }
+
     public static function toast(
         $text,
         $heading = null,
@@ -27,6 +32,9 @@ trait InteractsWithComponents
         #[ExpectedValues([null, 'default', 'success', 'info', 'warning', 'error'])] $variant = null,
         #[ExpectedValues([null, 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right'])] $position = null
     ) {
+        $duration ??= config('oanna.toast.duration');
+        $position ??= config('oanna.toast.position');
+
         $params = [
             'duration' => $duration,
             'slots' => [],

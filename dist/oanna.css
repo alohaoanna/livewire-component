@@ -41,6 +41,39 @@
   }
 }
 
+.dropdown {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+.dropdown__menu {
+  position: absolute;
+  z-index: 200;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  max-height: 300px;
+}
+.dropdown__menu[open] {
+  display: flex;
+}
+.dropdown__menu[data-open] {
+  opacity: 1;
+  visibility: visible;
+}
+.dropdown__item {
+  display: flex;
+  align-items: center;
+}
+.dropdown__item .button__loader {
+  margin-left: auto;
+  position: relative;
+}
+.dropdown__item[data-loading] .button__loader {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* -------------------------------------
  * FORMS
  * -----------------------------------*/
@@ -204,6 +237,15 @@
   background-color: rgba(0, 0, 0, 0.15);
 }
 
+.select-custom__input {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: block;
+}
+
 /* -------------------------------------
  * TOAST
  * -----------------------------------*/
@@ -278,6 +320,26 @@
 .toastContainer__toast__contentContainer {
   display: flex;
   flex-direction: column;
+}
+
+.tooltipContainer {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+.tooltipContainer__tooltip {
+  position: absolute;
+  z-index: 200;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.tooltipContainer__tooltip[open] {
+  display: block;
+}
+.tooltipContainer__tooltip[data-open] {
+  opacity: 1;
+  visibility: visible;
 }
 
 /*# sourceMappingURL=oanna.css.map */
