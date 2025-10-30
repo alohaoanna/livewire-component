@@ -7,9 +7,10 @@
     'icon' => null,
     'iconTrailing' => null,
     'iconClass' => null,
+    'class' => '',
 ])
 
-<div class="form-group__container" {{ $attributes }}>
+<div class="form-group__container {{ $class }}" {{ $attributes }}>
 
     @if (! empty($prefix))
         <div class="form-group__container__side form-group__container__side--prefix">

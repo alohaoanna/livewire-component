@@ -7,6 +7,7 @@
     'multiple' => false,
     'selectedSuffix' => false,
     'maxItemLimit' => 3,
+    'clearable' => false,
 ])
 
 @php
@@ -35,11 +36,19 @@
                     {{ $attributes->get('placeholder') }}
                 </button>
 
-               <oanna:menu>
-                   {{ $slot }}
-               </oanna:menu>
+                <oanna:menu>
+                    {{ $slot }}
+                </oanna:menu>
             </oanna:dropdown>
         </div>
+
+        @if ($clearable)
+            <x-slot:iconTrailing>
+                @if ($clearable)
+                    <oanna:icon name="close" data-select-clear />
+                @endif
+            </x-slot:iconTrailing>
+        @endif
 
     </oanna:input.container>
 
